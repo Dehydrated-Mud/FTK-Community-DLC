@@ -1,0 +1,13 @@
+ManifestFileVersion: 0
+CRC: 3809739789
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: customskinsbundle
+      Dependencies: {}
+    Info_1:
+      Name: customitemsbundle
+      Dependencies: {}
+    Info_2:
+      Name: customiconsbundle
+      Dependencies: {}

@@ -1,0 +1,35 @@
+ManifestFileVersion: 0
+CRC: 1196363811
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 030436c9b1573225710b0b276a6bf826
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 21f0dc8ebad690f009368069428e0a1a
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+Assets:
+- Assets/Icons/weaponSwordMagic.png
+- Assets/Icons/weaponDual.png
+- Assets/Icons/weaponFist.png
+- Assets/Icons/weaponBow.png
+- Assets/Icons/weaponBlunt.png
+- Assets/Icons/weaponMagicBook.png
+- Assets/Icons/weaponAxe2H.png
+- Assets/Icons/weaponGun.png
+- Assets/Icons/weaponAxe.png
+- Assets/Icons/weaponBlunt2H.png
+- Assets/Icons/weaponBlade2H.png
+- Assets/Icons/weaponWand.png
+- Assets/Icons/weaponBlade.png
+- Assets/Icons/weaponStick.png
+- Assets/Icons/weaponMagicStaff.png
+- Assets/Icons/weaponPolearm.png
+- Assets/Icons/weaponLute.png
+- Assets/Icons/weaponPolearm2H.png
+Dependencies: []
