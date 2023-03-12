@@ -8,6 +8,7 @@ This mod is a community driven expansion to the game For the King. The content o
 
 ### Paladin
 The paladin is a brand new character (complete with custom 3d model!) whose purpose is to help the viability of tank characters.
+![Paladin_Model10](https://user-images.githubusercontent.com/30760231/224574459-213664cc-d79d-480b-817a-a405315e29a4.gif)
 
 #### Stats 
 - Vitality: 84
