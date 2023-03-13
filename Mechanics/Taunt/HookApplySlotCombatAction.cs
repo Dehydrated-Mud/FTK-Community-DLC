@@ -13,7 +13,7 @@ using Logger = FTKAPI.Utils.Logger;
 using UnityEngine;
 using GridEditor;
 
-namespace CommunityDLC.Mechanics.Taunt
+namespace CommunityDLC.Mechanics
 {
     internal class HookApplySlotCombatAction : BaseModule
     {

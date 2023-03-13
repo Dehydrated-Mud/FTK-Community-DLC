@@ -21,15 +21,16 @@ The paladin is a brand new character (complete with custom 3d model!) whose purp
 
 #### Skills
 ##### Focus Healer
-When the paladin uses focus on an attack, the other characters in battle are healed for 15% of their max HP.  
-In the overworld, if paladin uses focus (movement, stat check, etc.) friendly players within a 2 hex radius are healed for 20% of their max HP.
+When the paladin uses focus on an attack, each party member is healed for 10% of their max HP.  
+In the overworld, if paladin uses focus (movement, stat check, etc.) at the end of that turn friendly players within a 2 hex radius are healed for 15% of their max HP.  
+The healing is not increased if more than one focus is applied.
 
 ##### Divine Intervention
 When paladin kills an enemy, her lowest health ally is granted protection.
 
 ## New Weapons
 ### The Defibrillator
-The Defibrillator is the first in a line of hammers attuned to vitality. The Defibrillator is a Tier V, one handed weapon intended to make vitality builds viable.
+The Defibrillator is the first in a line of hammers attuned to vitality. The Defibrillator is a mid/late-game, one handed weapon intended to make vitality builds viable.
 
 ### Pugio
 Allegedly, this exists somewhere in the game already. However this Pugio is intended to serve as the paladin's starting weapon.
@@ -44,6 +45,11 @@ The Silver Edge ability adds 1 physical damage for every resist the target has. 
 Taunt has been reworked in an attempt to make tank characters more viable. Changes include:
 - Taunt is now "roll for roll". If no skill checks are passed, taunt fails. If one skill check is passed taunt lasts for one combat turn (as usual). If both roll checks are passed taunt lasts for two combat turns.
 - When a player is taunting enemies are no longer allowed to use AoE or splash damage attacks (unless they do not have any other kinds of attacks).
+- The additional armor/resist that a player gains while taunting is now impervious.
+
+### Armor
+**Impervious Armor**  
+Impervious armor has been added to the game, which is armor and resist that cannot be pierced. Currently the only way to get impervious armor is via taunting. But perhaps a certain sanctum could be revived...
 
 ### Find Herbs
 **Base game behavior**  

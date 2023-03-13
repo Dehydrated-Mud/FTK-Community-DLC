@@ -11,11 +11,12 @@ namespace CommunityDLC.Objects.CharacterSkills
 {
     public class DivineIntervention : FTKAPI_CharacterSkill
     {
-        internal bool proc = false;
         public DivineIntervention() 
         {
-            this.Trigger = TriggerType.KillShot | TriggerType.RespondToHit;
-            this.Name = "Divine Intervention";
+            Trigger = TriggerType.KillShot | TriggerType.RespondToHit | TriggerType.SpecialAttackAnim;
+            Name = new CustomLocalizedString("Passive Skill: Divine Intervention");
+            Description = new CustomLocalizedString("When scoring a killing blow, the lowest health ally is given protection.");
+            SkillInfo = FTK_characterSkill.ID.Discipline;
         }
 
         public override void Skill(CharacterOverworld _player, TriggerType _trig, AttackAttempt _atk)
@@ -49,7 +50,10 @@ namespace CommunityDLC.Objects.CharacterSkills
                                 leastHealth.AddProfToDummy(new FTK_proficiencyTable.ID[] { FTK_proficiencyTable.ID.enProtectSelf }, true, false);
                                 leastHealth.PlayCharacterAbilityEventRPC(FTK_characterSkill.ID.None);
                             }
-                            
+                        }
+                        else
+                        {
+                            _player.m_CurrentDummy.AddProfToDummy(new FTK_proficiencyTable.ID[] { FTK_proficiencyTable.ID.enProtectSelf }, true, false);
                         }
                         proc = false;
                     }

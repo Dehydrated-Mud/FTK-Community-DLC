@@ -16,8 +16,9 @@ namespace CommunityDLC.Objects.CharacterSkills
     {
         public FocusHealer() 
         {
-            this.Trigger = TriggerType.AnyLandedAttack | TriggerType.EndTurn;
-            this.Name = "Mega Refocus";
+            Trigger = TriggerType.AnyLandedAttack | TriggerType.EndTurn;
+            Name = new CustomLocalizedString("Passive Skill: Focus Healer");
+            Description = new CustomLocalizedString("If this player has used focus at some point in their turn in the overworld, then at the end of their turn ally's within 2 hexes will receive healing. In combat, the party is healed if this player uses focus on an attack and that attack is not dodged.");
         }
         public override void Skill(CharacterOverworld _player, TriggerType _trig, AttackAttempt _atk)
         {
@@ -29,14 +30,18 @@ namespace CommunityDLC.Objects.CharacterSkills
                     {
                         int _newHealth = 0;
                         List<CharacterDummy> CombatPlayerMembers = EncounterSession.Instance.GetOtherCombatPlayerMembers(_player.m_CurrentDummy);
-                        CombatPlayerMembers.AddItem(_player.m_CurrentDummy);
+                        CombatPlayerMembers = CombatPlayerMembers.AddItem(_player.m_CurrentDummy).ToList();
                         foreach(CharacterDummy characterDummy in CombatPlayerMembers) 
                         {
                             _newHealth = GetNewHealth(characterDummy, 0.1f);
                             characterDummy.SpawnHudTextRPC("Focus Healing +" + (_newHealth - characterDummy.GetCurrentHealth()) + "HP", string.Empty);
                             characterDummy.m_CharacterOverworld.m_CharacterStats.SetSpecificHealth(_newHealth, false);
-                            characterDummy.PlayCharacterAbilityEventRPC(FTK_characterSkill.ID.None);
+                            if (characterDummy != _player.m_CurrentDummy)
+                            {
+                                characterDummy.PlayCharacterAbilityEventRPC(FTK_characterSkill.ID.None);
+                            }
                         }
+
                     }
                     break;
             }

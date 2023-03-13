@@ -1,5 +1,5 @@
 ﻿using BepInEx;
-using CommunityDLC.Mechanics.Taunt;
+using CommunityDLC.Mechanics;
 using CommunityDLC.Objects.Proficiencies;
 using CommunityDLC.Objects.CharacterSkills;
 using FTKAPI.Managers;
@@ -23,6 +23,7 @@ namespace CommunityDLC
         public static AssetBundle assetBundleIcons;
         public static BaseUnityPlugin Instance;
 
+        HookSetAttackDecision hookSetAttackDecision = new HookSetAttackDecision();
 
         private void Awake()
         {
@@ -35,6 +36,7 @@ namespace CommunityDLC
             assetBundleIcons = AssetManager.LoadAssetBundleFromResources("customiconsbundle", Assembly.GetExecutingAssembly());
             Harmony harmony = new Harmony(Info.Metadata.GUID);
             harmony.PatchAll();
+            hookSetAttackDecision.Initialize();
 
         }
 
@@ -83,9 +85,6 @@ namespace CommunityDLC
 
                     HookApplySlotCombatAction.Instance.Prof = taunt02;
                     HookApplySlotCombatAction.Instance.Initialize();
-                    //HookApplySlotCombatAction hookApplySlotCombatAction = new HookApplySlotCombatAction() { Prof = taunt02 };
-                    //hookApplySlotCombatAction.Initialize();
-
                 }
             }
         }
