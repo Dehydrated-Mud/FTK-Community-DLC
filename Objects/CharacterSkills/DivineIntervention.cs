@@ -29,7 +29,7 @@ namespace CommunityDLC.Objects.CharacterSkills
                     
                     if(!(_atk.m_DamagedDummy.Protected || _atk.m_DamagedDummy.Shielded))
                     {
-                        Logger.LogWarning("We're getting a kill shot! Setting proc to true");
+                        //Logger.LogWarning("We're getting a kill shot! Setting proc to true");
                         proc = true;
                     }
                     break;
@@ -39,7 +39,7 @@ namespace CommunityDLC.Objects.CharacterSkills
         {
             switch (_trig) {
                 case TriggerType.RespondToHit:
-                    Logger.LogWarning("We are responding to a hit! proc is: " + proc);
+                    //Logger.LogWarning("We are responding to a hit! proc is: " + proc);
                     if(proc)
                     {
                         List<CharacterDummy> otherCombatPlayerMembers = EncounterSession.Instance.GetOtherCombatPlayerMembers(_player.m_CurrentDummy);

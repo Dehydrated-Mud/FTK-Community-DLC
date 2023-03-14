@@ -41,7 +41,7 @@ namespace CommunityDLC.Mechanics
                     iD = tauntAbleIDs[UnityEngine.Random.Range(0, tauntAbleIDs.Count)];
                     Logger.LogInfo("Returning ability " + iD + " with attack type " + FTK_proficiencyTableDB.GetDB().GetEntry(iD).m_Target);
                 }
-                Logger.LogInfo("I am returning an attack of type: " + iD);
+                //Logger.LogInfo("I am returning an attack of type: " + iD);
                 self.m_EnemyAttackDecision = new EnemyAttackDecision(iD); //Must set the attribute at the same time as returning the decision because reconsiderAttack uses this attribute to determine whether or not to bypass the decision!
                 return new EnemyAttackDecision(iD);
                 EncounterSession.Instance.AddCombatEventToActiveLogEntry("[MODIFIED] " + self.GameLogID + " is attempting " + text + "(" + iD.ToString() + ")", _includeInOutputLog: true);
@@ -49,7 +49,6 @@ namespace CommunityDLC.Mechanics
             }
             else
             {
-                Logger.LogWarning("Nobody Taunting");
                 return orig(self);
             }
         }
@@ -62,7 +61,6 @@ namespace CommunityDLC.Mechanics
             {
                 FTK_proficiencyTable entry3 = FTK_proficiencyTableDB.GetDB().GetEntry(ii);
                 FTK_proficiencyTable knife = FTK_proficiencyTableDB.GetDB().GetEntry((FTK_proficiencyTable.ID)18);
-                Logger.LogMessage("CATEGORY FOR KNIFE??????: " + knife.m_ProficiencyPrefab.m_Category.ToString());
                 Logger.LogInfo("Found proficiency with attack type: " + entry3.m_Target);
                 if (entry3.m_Target != CharacterDummy.TargetType.Splash & entry3.m_Target != CharacterDummy.TargetType.Aoe)
                 {

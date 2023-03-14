@@ -22,7 +22,7 @@ namespace CommunityDLC.Objects.CharacterSkills
         }
         public override void Skill(CharacterOverworld _player, TriggerType _trig, AttackAttempt _atk)
         {
-            Logger.LogWarning("Attempting combat focus heal");
+            //Logger.LogWarning("Attempting combat focus heal");
             switch (_trig)
             {
                 case TriggerType.AnyLandedAttack:
@@ -47,7 +47,7 @@ namespace CommunityDLC.Objects.CharacterSkills
         }
         public override void Skill(CharacterOverworld _player, TriggerType _trig)
         {
-            Logger.LogWarning("Attempting end turn focus heal");
+            //Logger.LogWarning("Attempting end turn focus heal");
             float _conv = 2.89f;
             switch (_trig) 
             {
@@ -60,7 +60,7 @@ namespace CommunityDLC.Objects.CharacterSkills
                             Logger.LogWarning("Distance to target is: " + magnitude);
                             if (magnitude <= 2f * _conv)
                             {
-                                int _newHealth = GetNewHealth(characterOverworld.m_CurrentDummy, 0.2f);
+                                int _newHealth = GetNewHealth(characterOverworld.m_CurrentDummy, 0.15f);
                                 if (_newHealth - characterOverworld.m_CurrentDummy.GetCurrentHealth() > 0)
                                 {
                                     characterOverworld.SpawnHudTextRPC("Focus Healed +" + (_newHealth - characterOverworld.m_CurrentDummy.GetCurrentHealth()) + "HP", string.Empty);
