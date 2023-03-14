@@ -9,6 +9,7 @@ namespace CommunityDLC {
             Name = new("Silver Edge");
             SlotOverride = 4;
             ProficiencyPrefab = new ProficiencyAttack();
+            DmgTypeOverride = GridEditor.FTK_weaponStats2.DamageType.magic;
             Category = Category.Resist;
             CustomValue = -10f;
             FullSlots = true;

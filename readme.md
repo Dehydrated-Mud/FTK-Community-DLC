@@ -36,7 +36,7 @@ The Defibrillator is the first in a line of hammers attuned to vitality. The Def
 Allegedly, this exists somewhere in the game already. However this Pugio is intended to serve as the paladin's starting weapon.
 
 ### Silver Longsword (WIP)
-The primary weapon of a hero fortold, the Silver Longsword, is an two-handed awarness sword.
+The primary weapon of a hero fortold, the Silver Longsword, is an two-handed awarness sword that can deal physical or magic damage (like the Druid bow).
 ** Abillity: Silver Edge **
 The Silver Edge ability adds 1 physical damage for every resist the target has. (under construction)
 
@@ -59,3 +59,4 @@ In the base game when Find Herbs procs it is put on cooldown until the next turn
 Find Herb now checks to see the players are in an infinite dungeon. If so, Find Herbs is not subject to a cooldown.
 
 ## Known Issues
+- The increase in damage gained per level does not show up on the HUD for custom characters, although the actual damage that the character does is accurate.

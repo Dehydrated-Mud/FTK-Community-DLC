@@ -33,7 +33,7 @@ namespace CommunityDLC {
             NightMarket = true;
             ItemRarity = FTK_itemRarityLevel.ID.rare;
             GoldValue = 233;
-            MinLevel = 7;
+            MinLevel = 8;
             MaxLevel = 13;
             PriceScale = false;
             Icon = CommunityDLC.assetBundleIcons.LoadAsset<Sprite>("Assets/Icons/weaponBlunt.png");
