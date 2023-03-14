@@ -9,6 +9,10 @@ This mod is a community driven expansion to the game For the King. The content o
 ### Paladin
 The paladin is a brand new character (complete with custom 3d model!) whose purpose is to help the viability of tank characters.  
 ![Paladin_Model10](https://user-images.githubusercontent.com/30760231/224574459-213664cc-d79d-480b-817a-a405315e29a4.gif)
+![Lava2](https://user-images.githubusercontent.com/30760231/225161421-4c63683b-5cf8-4e80-bc4a-35841e601cc8.gif)
+![NoHelmet](https://user-images.githubusercontent.com/30760231/225161142-b13b0f5e-e532-47f6-b7d8-8694d6cea01d.png)
+
+
 
 #### Stats 
 - Vitality: 84
@@ -29,16 +33,21 @@ The healing is not increased if more than one focus is applied.
 When paladin kills an enemy, her lowest health ally is granted protection.
 
 ## New Weapons
+![HammerLightning](https://user-images.githubusercontent.com/30760231/225162133-a6e6f613-b258-4a90-a33a-ea7607509639.JPG)
+![Pugio](https://user-images.githubusercontent.com/30760231/225162107-97c14ca0-cde6-41b9-850d-a3f6ef078249.JPG)
+![Silversword](https://user-images.githubusercontent.com/30760231/225162086-296a51e2-1dfc-4533-a644-8c06f2ddc26a.JPG)
+
 ### The Defibrillator
-The Defibrillator is the first in a line of hammers attuned to vitality. The Defibrillator is a mid/late-game, one handed weapon intended to make vitality builds viable.
+The Defibrillator is the first in a line of hammers attuned to vitality. The Defibrillator is a mid/late-game, one handed weapon intended to make vitality builds viable.  
 
 ### Pugio
-Allegedly, this exists somewhere in the game already. However this Pugio is intended to serve as the paladin's starting weapon.
+Allegedly, this exists somewhere in the game already. However this Pugio is intended to serve as the paladin's starting weapon.  
 
 ### Silver Longsword (WIP)
 The primary weapon of a hero fortold, the Silver Longsword, is an two-handed awarness sword that can deal physical or magic damage (like the Druid bow).
 ** Abillity: Silver Edge **
-The Silver Edge ability adds 1 physical damage for every resist the target has. (under construction)
+The Silver Edge ability adds 1 physical damage for every resist the target has. (under construction)  
+
 
 ## Mechanic Reworks
 ### Taunt 
@@ -59,4 +68,4 @@ In the base game when Find Herbs procs it is put on cooldown until the next turn
 Find Herb now checks to see the players are in an infinite dungeon. If so, Find Herbs is not subject to a cooldown.
 
 ## Known Issues
-- The increase in damage gained per level does not show up on the HUD for custom characters, although the actual damage that the character does is accurate.
+- In the HUD, player damage does not show the increase in damage due to level when a custom item is equipped.
