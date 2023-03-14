@@ -1,10 +1,11 @@
-﻿using FTKAPI.Objects;
+﻿using FTKAPI.Managers;
+using FTKAPI.Objects;
 using GridEditor;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using CommunityDLC.Objects.CustomSkills;
 using Logger = FTKAPI.Utils.Logger;
 
 namespace CommunityDLC.Objects.CharacterSkills
@@ -13,10 +14,11 @@ namespace CommunityDLC.Objects.CharacterSkills
     {
         public DivineIntervention() 
         {
+            int customSkill = SkillManager.AddSkill(new DivineInterventionInfo());
             Trigger = TriggerType.KillShot | TriggerType.RespondToHit | TriggerType.SpecialAttackAnim;
             Name = new CustomLocalizedString("Passive Skill: Divine Intervention");
             Description = new CustomLocalizedString("When scoring a killing blow, the lowest health ally is given protection.");
-            SkillInfo = FTK_characterSkill.ID.Discipline;
+            SkillInfo = (FTK_characterSkill.ID)customSkill;
         }
 
         public override void Skill(CharacterOverworld _player, TriggerType _trig, AttackAttempt _atk)

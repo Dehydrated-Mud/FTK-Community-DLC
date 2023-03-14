@@ -41,7 +41,6 @@ namespace CommunityDLC.Objects.CharacterSkills
                                 characterDummy.PlayCharacterAbilityEventRPC(FTK_characterSkill.ID.None);
                             }
                         }
-
                     }
                     break;
             }
