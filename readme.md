@@ -29,6 +29,10 @@ When the paladin uses focus on an attack, each party member is healed for 10% of
 In the overworld, if paladin uses focus (movement, stat check, etc.) at the end of that turn friendly players within a 2 hex radius are healed for 15% of their max HP.  
 The healing is not increased if more than one focus is applied.
 
+
+https://user-images.githubusercontent.com/30760231/225162743-9964c04c-57c1-4e3d-a0db-e715c4e6edf7.mp4
+
+
 ##### Divine Intervention
 When paladin kills an enemy, her lowest health ally is granted protection.
 
