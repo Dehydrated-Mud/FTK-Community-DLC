@@ -24,7 +24,7 @@ namespace CommunityDLC.Mechanics
             {
                 if(instance == null)
                 {
-                    instance= new HookApplySlotCombatAction();
+                    instance = new HookApplySlotCombatAction();
                 }
                 return instance;
             }

@@ -24,6 +24,7 @@ namespace CommunityDLC
         public static BaseUnityPlugin Instance;
 
         HookSetAttackDecision hookSetAttackDecision = new HookSetAttackDecision();
+        FindHerbs hookFindHerbs = new FindHerbs();
 
         private void Awake()
         {
@@ -37,6 +38,7 @@ namespace CommunityDLC
             Harmony harmony = new Harmony(Info.Metadata.GUID);
             harmony.PatchAll();
             hookSetAttackDecision.Initialize();
+            hookFindHerbs.Initialize();
 
         }
 
