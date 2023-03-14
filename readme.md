@@ -14,13 +14,13 @@ The paladin is a brand new character (complete with custom 3d model!) whose purp
 
 
 
-#### Stats 
+#### Stats (Journeyman/Master)
 - Vitality: 84
 - Strength: 70
-- Intelegence: 55
-- Talent: 65
+- Intelegence: 40
+- Talent: 50
 - Awareness: 60
-- Speed: 65
+- Speed: 66
 - Luck: 50
 
 #### Skills
@@ -53,7 +53,7 @@ The Silver Edge ability adds 1 physical damage for every resist the target has. 
 ### Taunt 
 Taunt has been reworked in an attempt to make tank characters more viable. Changes include:
 - Taunt is now "roll for roll". If no skill checks are passed, taunt fails. If one skill check is passed taunt lasts for one combat turn (as usual). If both roll checks are passed taunt lasts for two combat turns.
-- When a player is taunting enemies are no longer allowed to use AoE or splash damage attacks (unless they do not have any other kinds of attacks).
+- When a player is taunting enemies are no longer allowed to use AoE or splash damage attacks (unless they do not have any other kinds of attacks). When someone is taunting, enemies are not subject to ability cooldowns so watch out!
 - The additional armor/resist that a player gains while taunting is now impervious.
 
 ### Armor
@@ -68,4 +68,4 @@ In the base game when Find Herbs procs it is put on cooldown until the next turn
 Find Herb now checks to see the players are in an infinite dungeon. If so, Find Herbs is not subject to a cooldown.
 
 ## Known Issues
-- In the HUD, player damage does not show the increase in damage due to level when a custom item is equipped.
+- In the HUD, player damage does not show the increase in damage due to player level when a custom item is equipped.
