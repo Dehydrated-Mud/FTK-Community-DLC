@@ -3,13 +3,13 @@ using HutongGames.PlayMaker.Actions;
 using UnityEngine;
 
 namespace CommunityDLC {
-    public class SilverSmite : CustomProficiency {
-        public SilverSmite() {
-            ID = "silversmite";
+    public class SteelSmite : CustomProficiency {
+        public SteelSmite() {
+            ID = "steelsmite";
             Name = new("Silver Edge");
             SlotOverride = 4;
             ProficiencyPrefab = new ProficiencyAttack();
-            Category = Category.Resist;
+            Category = Category.Armor;
             CustomValue = -10f;
             FullSlots = true;
             PerSlotSkillRoll = 0f;

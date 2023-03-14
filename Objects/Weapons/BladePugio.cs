@@ -29,6 +29,7 @@ namespace CommunityDLC {
             NoRegularAttack = true;
             GoldValue = 10;
             Icon = CommunityDLC.assetBundleIcons.LoadAsset<Sprite>("Assets/Icons/weaponBlade.png");
+            IconNonClickable = CommunityDLC.assetBundleIcons.LoadAsset<Sprite>("Assets/Icons/weaponBlade.png");
         }
     }
 }

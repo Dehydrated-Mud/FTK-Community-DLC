@@ -57,3 +57,5 @@ In the base game when Find Herbs procs it is put on cooldown until the next turn
 
 **Modded behavior**  
 Find Herb now checks to see the players are in an infinite dungeon. If so, Find Herbs is not subject to a cooldown.
+
+## Known Issues

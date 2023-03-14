@@ -85,6 +85,16 @@ namespace CommunityDLC
                     int bladeSilver = ItemManager.AddItem(new BladeSilver(), Instance);
                     int hammerLightning = ItemManager.AddItem(new HammerLightning(), Instance);
 
+                    ClassManager.ModifyClass(//Modifies the hobo
+                        FTK_playerGameStart.ID.hobo,
+                        new CustomClass(FTK_playerGameStart.ID.hobo)
+                        {
+                            StartWeapon = (FTK_itembase.ID)bladeSilver,
+                        }.AddToStartItems(new FTK_itembase.ID[] {
+                            (FTK_itembase.ID)hammerLightning
+                        })
+                    );
+
                     HookApplySlotCombatAction.Instance.Prof = taunt02;
                     HookApplySlotCombatAction.Instance.Initialize();
                 }

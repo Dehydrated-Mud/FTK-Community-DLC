@@ -9,7 +9,7 @@ namespace CommunityDLC {
     public class BladeSilver : CustomItem {
         public BladeSilver() {
             int customProf = ProficiencyManager.AddProficiency(new SilverSmite());
-
+            int customProf2 = ProficiencyManager.AddProficiency(new SteelSmite());
             ID = "CustomBladeSilver";
             Name = new("Silver Longsword");
             Prefab = CommunityDLC.assetBundle.LoadAsset<GameObject>("Assets/customBladeSilver.prefab");
@@ -19,12 +19,12 @@ namespace CommunityDLC {
             WeaponType = Weapon.WeaponType.bladed;
             ProficiencyEffects = new() { // these are the weapon attacks/skills for this custom item
                 [(FTK_proficiencyTable.ID)customProf] = FTK_hitEffect.ID.bladeHeavyCrit,
-                [FTK_proficiencyTable.ID.bladeDamage] = FTK_hitEffect.ID.defaultBlade
+                [(FTK_proficiencyTable.ID)customProf2] = FTK_hitEffect.ID.bladeHeavyProf
             };
             AnimationController = AssetManager.GetAnimationControllers<Weapon>().Find(i => i.name == "player_2H_Blunt_Combat");
             Slots = 4;
-            MaxDmg = 30;
-            DmgType = FTK_weaponStats2.DamageType.magic;
+            MaxDmg = 26;
+            DmgType = FTK_weaponStats2.DamageType.physical;
             ShopStock = 1;
             TownMarket = true;
             DungeonMerchant= true;
@@ -34,8 +34,9 @@ namespace CommunityDLC {
             GoldValue = 180;
             PriceScale = false;
             ItemRarity = FTK_itemRarityLevel.ID.rare;
-            NoRegularAttack = false;
+            NoRegularAttack = true;
             Icon = CommunityDLC.assetBundleIcons.LoadAsset<Sprite>("Assets/Icons/weaponBlade.png");
+            IconNonClickable = CommunityDLC.assetBundleIcons.LoadAsset<Sprite>("Assets/Icons/weaponBlade.png");
             //WeaponSize = (FTK_ragdollDeath.ID)3; //Causes game to not start
         }
     }

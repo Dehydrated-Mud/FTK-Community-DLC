@@ -37,6 +37,7 @@ namespace CommunityDLC {
             MaxLevel = 13;
             PriceScale = false;
             Icon = CommunityDLC.assetBundleIcons.LoadAsset<Sprite>("Assets/Icons/weaponBlunt.png");
+            IconNonClickable = CommunityDLC.assetBundleIcons.LoadAsset<Sprite>("Assets/Icons/weaponBlunt.png");
             //WeaponSize = (FTK_ragdollDeath.ID)3; //Causes game to not start
         }
     }
