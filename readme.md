@@ -27,7 +27,8 @@ The paladin is a brand new character (complete with custom 3d model!) whose purp
 ##### Focus Healer
 When the paladin uses focus on an attack, each party member is healed for 10% of their max HP.  
 In the overworld, if paladin uses focus (movement, stat check, etc.) at the end of that turn friendly players within a 2 hex radius are healed for 15% of their max HP.  
-The healing is not increased if more than one focus is applied.
+- The healing is not increased if more than one focus is applied.
+- The attack must hit the target in order for the party to receive healing.
 
 
 https://user-images.githubusercontent.com/30760231/225162743-9964c04c-57c1-4e3d-a0db-e715c4e6edf7.mp4
@@ -48,8 +49,8 @@ The Defibrillator is the first in a line of hammers attuned to vitality. The Def
 Allegedly, this exists somewhere in the game already. However this Pugio is intended to serve as the paladin's starting weapon.  
 
 ### Silver Longsword (WIP)
-The primary weapon of a hero fortold, the Silver Longsword, is an two-handed awarness sword that can deal physical or magic damage (like the Druid bow).
-** Abillity: Silver Edge **
+The primary weapon of a hero fortold, the Silver Longsword, is an two-handed awarness sword that can deal physical or magic damage (like the Druid bow).  
+**Abillity: Silver Edge**
 The Silver Edge ability adds 1 physical damage for every resist the target has. (under construction)  
 
 
@@ -64,7 +65,7 @@ Taunt has been reworked in an attempt to make tank characters more viable. Chang
 **Impervious Armor**  
 Impervious armor has been added to the game, which is armor and resist that cannot be pierced. Currently the only way to get impervious armor is via taunting. But perhaps a certain sanctum could be revived...
 
-### Find Herbs
+### Find Herbs - Hildebrant's Cellar
 **Base game behavior**  
 In the base game when Find Herbs procs it is put on cooldown until the next turn cycle. This means that in dungeons (icluding Hildebrant's cellar) only one herb may be found for the entire dungeon run.
 
