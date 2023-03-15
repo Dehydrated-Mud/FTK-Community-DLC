@@ -21,6 +21,7 @@ namespace CommunityDLC {
             AnimationController = AssetManager.GetAnimationControllers<Weapon>().Find(i => i.name == "player_1H_Bladed_Combat");
             Slots = 3;
             MaxDmg = 8;
+            DmgGain = 2;
             DmgType = FTK_weaponStats2.DamageType.physical;
             ShopStock = 1;
             TownMarket = false;

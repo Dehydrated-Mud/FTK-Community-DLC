@@ -25,6 +25,7 @@ namespace CommunityDLC {
             Slots = 4;
             MaxDmg = 26;
             DmgType = FTK_weaponStats2.DamageType.physical;
+            DmgGain = 1;
             ShopStock = 1;
             TownMarket = true;
             DungeonMerchant= true;

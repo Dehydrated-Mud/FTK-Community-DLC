@@ -1,7 +1,7 @@
 {
   "name": "CommunityDLC",
   "description": "A community driven mod to expand For the King",
-  "website_url": "https://github.com/Dehydrated-Mud/FTK-Community-DLC",
+  "website_url": "https://github.com/Dehydrated-Mud/FTK-Community-DLC/blob/main/readme.md",
   "version_number": "0.1.0",
   "dependencies": [
     "BepInEx-BepInExPack_ForTheKing-5.4.19",

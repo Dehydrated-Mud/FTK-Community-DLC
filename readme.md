@@ -20,7 +20,7 @@ The paladin is a brand new character (complete with custom 3d model!) whose purp
 - Intelegence: 40
 - Talent: 50
 - Awareness: 60
-- Speed: 66
+- Speed: 70
 - Luck: 50
 
 #### Skills
