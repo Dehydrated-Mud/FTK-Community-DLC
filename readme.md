@@ -65,7 +65,7 @@ Taunt has been reworked in an attempt to make tank characters more viable. Chang
 **Impervious Armor**  
 Impervious armor has been added to the game, which is armor and resist that cannot be pierced. Currently the only way to get impervious armor is via taunting. But perhaps a certain sanctum could be revived...
 
-### Find Herbs
+### Find Herbs - Hildebrant's Cellar
 **Base game behavior**  
 In the base game when Find Herbs procs it is put on cooldown until the next turn cycle. This means that in dungeons (icluding Hildebrant's cellar) only one herb may be found for the entire dungeon run.
 
