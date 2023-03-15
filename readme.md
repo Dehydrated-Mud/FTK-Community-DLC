@@ -72,5 +72,7 @@ In the base game when Find Herbs procs it is put on cooldown until the next turn
 **Modded behavior**  
 Find Herb now checks to see the players are in an infinite dungeon. If so, Find Herbs is not subject to a cooldown.
 
+## A note on Lore
+This mod does not change the behavior of lore. The lore you gain while playing the modded version will persist into vanilla and vice versa, as will your unlocks from the lore store.
 ## Known Issues
-- In the HUD, player damage does not show the increase in damage due to player level when a custom item is equipped.
+
