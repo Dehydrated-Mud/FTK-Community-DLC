@@ -2,7 +2,7 @@
 
 [![Discord][discord-badge]][discord-link]
 
-[discord-badge]: https://img.shields.io/discord/900685481858183178?label=discord&logo=discord
+[discord-badge]: https://img.shields.io/discord/1044414682162790511?label=CommunityDLC%20Discord&logo=discord&style=for-the-badge
 [discord-link]: https://discord.gg/tZRjxSDnaG
 
 This mod is a community driven expansion to the game For the King. The content of this mod is meant to keep the original spirit of the game while adding new features, characters, abilities, items, balancing, bug-fixes, and more!
