@@ -35,12 +35,12 @@ In the overworld, if paladin uses focus (movement, stat check, etc.) at the end 
 - The healing is not increased if more than one focus is applied.
 - The attack must hit the target in order for the party to receive healing.
 
-
-https://user-images.githubusercontent.com/30760231/225162743-9964c04c-57c1-4e3d-a0db-e715c4e6edf7.mp4
-
-
 ##### Divine Intervention
 When paladin kills an enemy, her lowest health ally is granted protection.
+
+
+https://user-images.githubusercontent.com/30760231/226071750-7989abbc-a401-46f9-a742-fdf8c9a7dcfd.mp4
+
 
 ## New Weapons
 ![HammerLightning](https://user-images.githubusercontent.com/30760231/225162133-a6e6f613-b258-4a90-a33a-ea7607509639.JPG)
@@ -49,7 +49,7 @@ When paladin kills an enemy, her lowest health ally is granted protection.
 
 ### The Defibrillator
 The Defibrillator is the first in a line of hammers attuned to vitality. The Defibrillator is a mid/late-game, one handed weapon intended to make vitality builds viable.  
-
+https://user-images.githubusercontent.com/30760231/225162743-9964c04c-57c1-4e3d-a0db-e715c4e6edf7.mp4
 ### Pugio
 Allegedly, this exists somewhere in the game already. However this Pugio is intended to serve as the paladin's starting weapon.  
 
