@@ -1,0 +1,4 @@
+xcopy /y "C:\Users\blloy\OneDrive\Documents\GitHub\FTK-Community-DLC\bin\Debug\net35\FTKAPI.dll" "\\DESKTOP-5TQJ930\Users\dolla\AppData\Roaming\Thunderstore Mod Manager\DataFolder\ForTheKing\profiles\test\BepInEx\plugins\FTKAPI.dll"
+xcopy /y "C:\Users\blloy\OneDrive\Documents\GitHub\FTK-Community-DLC\bin\Debug\net35\CommunityDLC.dll" "\\DESKTOP-5TQJ930\Users\dolla\AppData\Roaming\Thunderstore Mod Manager\DataFolder\ForTheKing\profiles\test\BepInEx\plugins\CommunityDLC.dll"
+xcopy /y "C:\Users\blloy\OneDrive\Documents\GitHub\FTK-Community-DLC\bin\Debug\net35\FTKAPI.dll" "C:\Users\blloy\AppData\Roaming\Thunderstore Mod Manager\DataFolder\ForTheKing\profiles\Test\BepInEx\plugins\FTKAPI.dll"
+xcopy /y "C:\Users\blloy\OneDrive\Documents\GitHub\FTK-Community-DLC\bin\Debug\net35\CommunityDLC.dll" "C:\Users\blloy\AppData\Roaming\Thunderstore Mod Manager\DataFolder\ForTheKing\profiles\Test\BepInEx\plugins\CommunityDLC.dll"

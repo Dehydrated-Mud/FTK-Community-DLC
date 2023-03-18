@@ -12,8 +12,10 @@ namespace CommunityDLC.Objects.CharacterSkills
 {
     public class DivineIntervention : FTKAPI_CharacterSkill
     {
-        public DivineIntervention() 
+        internal SkillContainer skillContainer;
+        public DivineIntervention(SkillContainer _container) 
         {
+            skillContainer = _container;
             int customSkill = SkillManager.AddSkill(new DivineInterventionInfo());
             Trigger = TriggerType.KillShot | TriggerType.RespondToHit | TriggerType.SpecialAttackAnim;
             Name = new CustomLocalizedString("Passive Skill: Divine Intervention");
@@ -27,10 +29,10 @@ namespace CommunityDLC.Objects.CharacterSkills
             {
                 case TriggerType.KillShot:
                     
-                    if(!(_atk.m_DamagedDummy.Protected || _atk.m_DamagedDummy.Shielded))
+                    if(!(_atk.m_DamagedDummy.Protected || _atk.m_DamagedDummy.Shielded) && (EncounterSession.Instance.GetOtherCombatPlayerMembers(_player.m_CurrentDummy).Count) > 0)
                     {
                         //Logger.LogWarning("We're getting a kill shot! Setting proc to true");
-                        proc = true;
+                        skillContainer.SyncDivine(true);
                     }
                     break;
             }
@@ -48,14 +50,16 @@ namespace CommunityDLC.Objects.CharacterSkills
                             CharacterDummy leastHealth = otherCombatPlayerMembers.OrderBy(p => p.m_CharacterOverworld.m_CharacterStats.m_HealthCurrent).First();
                             if (leastHealth != null)
                             {
-                                leastHealth.SpawnHudTextRPC("Divine Protection", string.Empty);
-                                leastHealth.AddProfToDummy(new FTK_proficiencyTable.ID[] { FTK_proficiencyTable.ID.enProtectSelf }, true, false);
+                                leastHealth.AddProfToDummy(new FTK_proficiencyTable.ID[] { FTK_proficiencyTable.ID.enProtectSelf }, true, true);
                                 leastHealth.PlayCharacterAbilityEventRPC(FTK_characterSkill.ID.None);
                             }
                         }
                         else
                         {
-                            _player.m_CurrentDummy.AddProfToDummy(new FTK_proficiencyTable.ID[] { FTK_proficiencyTable.ID.enProtectSelf }, true, false);
+                            _player.m_CurrentDummy.RPCAllSelf("AddProfToDummy", new object[3]
+                                {
+                                    new FTK_proficiencyTable.ID[] { FTK_proficiencyTable.ID.enProtectSelf }, true, true
+                                });
                         }
                         proc = false;
                     }

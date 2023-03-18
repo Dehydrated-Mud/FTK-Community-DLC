@@ -35,6 +35,10 @@ namespace CommunityDLC
             assetBundle = AssetManager.LoadAssetBundleFromResources("customitemsbundle", Assembly.GetExecutingAssembly());
             assetBundleSkins = AssetManager.LoadAssetBundleFromResources("customskinsbundle", Assembly.GetExecutingAssembly());
             assetBundleIcons = AssetManager.LoadAssetBundleFromResources("customiconsbundle", Assembly.GetExecutingAssembly());
+            NetworkManager.RegisterNetObject("CommunityDLC.SkillSyncer",
+                gameObject => gameObject.AddComponent<SkillSyncer>(),
+                new()
+            );
             Harmony harmony = new Harmony(Info.Metadata.GUID);
             harmony.PatchAll();
             hookSetAttackDecision.Initialize();
@@ -62,8 +66,9 @@ namespace CommunityDLC
 
                     // Add Paladin
                     // Skills
-                    FTKAPI_CharacterSkill focusHealer = new FocusHealer();
-                    FTKAPI_CharacterSkill divine = new DivineIntervention();
+                    SkillContainer.Instance.Reset();
+                    FTKAPI_CharacterSkill focusHealer = SkillContainer.Instance.focusHealer;
+                    FTKAPI_CharacterSkill divine = SkillContainer.Instance.divine;
                     FTKAPI_CharacterSkill[] paladinSkills = { focusHealer, divine };
                     CustomCharacterSkills paladinCharacterSkills = new CustomCharacterSkills()
                     {

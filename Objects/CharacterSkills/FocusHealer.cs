@@ -16,7 +16,7 @@ namespace CommunityDLC.Objects.CharacterSkills
     {
         public FocusHealer() 
         {
-            Trigger = TriggerType.AnyLandedAttack | TriggerType.EndTurn;
+            Trigger = TriggerType.AnyLandedAttack | TriggerType.EndTurn | TriggerType.ConvertFocusToAction | TriggerType.RollSlots;
             Name = new CustomLocalizedString("Passive Skill: Focus Healer");
             Description = new CustomLocalizedString("If this player has used focus at some point in their turn in the overworld, then at the end of their turn ally's within 2 hexes will receive healing. In combat, the party is healed if this player uses focus on an attack and that attack is not dodged.");
         }
@@ -35,7 +35,7 @@ namespace CommunityDLC.Objects.CharacterSkills
                         {
                             _newHealth = GetNewHealth(characterDummy, 0.1f);
                             characterDummy.SpawnHudTextRPC("Focus Healing +" + (_newHealth - characterDummy.GetCurrentHealth()) + "HP", string.Empty);
-                            characterDummy.m_CharacterOverworld.m_CharacterStats.SetSpecificHealth(_newHealth, false);
+                            characterDummy.m_CharacterOverworld.m_CharacterStats.SetSpecificHealthRPC(_newHealth);
                             if (characterDummy != _player.m_CurrentDummy)
                             {
                                 characterDummy.PlayCharacterAbilityEventRPC(FTK_characterSkill.ID.None);
@@ -47,13 +47,27 @@ namespace CommunityDLC.Objects.CharacterSkills
         }
         public override void Skill(CharacterOverworld _player, TriggerType _trig)
         {
-            //Logger.LogWarning("Attempting end turn focus heal");
+            Logger.LogWarning("Attempting end turn focus heal");
             float _conv = 2.89f;
             switch (_trig) 
             {
-                case TriggerType.EndTurn:
-                    if(_player.m_CharacterStats.SpentFocus > 0 && !_player.m_CharacterStats.m_IsInCombat && !_player.IsInDungeon())
+                case TriggerType.RollSlots:
+                    if (_player.m_CharacterStats.SpentFocus > 0 && !proc)
                     {
+                        proc = true;
+                    }
+                    break;
+                case TriggerType.ConvertFocusToAction:
+                    if (_player.m_CharacterStats.m_FocusPoints > 0 && _player.m_CharacterStats.m_ActionPoints < 9 && !proc)
+                    {
+                        proc = true;
+                    }
+                    break;
+                case TriggerType.EndTurn:
+                    if (proc && !_player.m_CharacterStats.m_IsInCombat && !_player.IsInDungeon())
+                    {
+                        Logger.LogWarning("Met Criteria");
+                        Logger.LogWarning(FTKHub.Instance.m_CharacterOverworlds.Count);
                         foreach (CharacterOverworld characterOverworld in FTKHub.Instance.m_CharacterOverworlds)
                         {
                             float magnitude = (_player.transform.position - characterOverworld.transform.position).magnitude;
@@ -63,13 +77,14 @@ namespace CommunityDLC.Objects.CharacterSkills
                                 int _newHealth = GetNewHealth(characterOverworld.m_CurrentDummy, 0.15f);
                                 if (_newHealth - characterOverworld.m_CurrentDummy.GetCurrentHealth() > 0)
                                 {
-                                    characterOverworld.SpawnHudTextRPC("Focus Healed +" + (_newHealth - characterOverworld.m_CurrentDummy.GetCurrentHealth()) + "HP", string.Empty);
-                                    characterOverworld.m_CharacterStats.SetSpecificHealthRPC(_newHealth);
-                                    characterOverworld.PlayCharacterAbilityEventRPC(FTK_characterSkill.ID.None);
+                                    characterOverworld.SpawnHudText("Focus Healed +" + (_newHealth - characterOverworld.m_CurrentDummy.GetCurrentHealth()) + "HP", string.Empty);
+                                    characterOverworld.m_CharacterStats.SetSpecificHealth(_newHealth, true);
+                                    characterOverworld.PlayCharacterAbilityEvent(FTK_characterSkill.ID.None);
                                 }
                             }
                         }
                     }
+                    proc = false;
                     break;
             }
         }
