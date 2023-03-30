@@ -33,12 +33,12 @@ namespace CommunityDLC.Objects.CharacterSkills
                         CombatPlayerMembers = CombatPlayerMembers.AddItem(_player.m_CurrentDummy).ToList();
                         foreach(CharacterDummy characterDummy in CombatPlayerMembers) 
                         {
-                            _newHealth = GetNewHealth(characterDummy, 0.1f);
-                            characterDummy.SpawnHudTextRPC("Focus Healing +" + (_newHealth - characterDummy.GetCurrentHealth()) + "HP", string.Empty);
-                            characterDummy.m_CharacterOverworld.m_CharacterStats.SetSpecificHealthRPC(_newHealth);
+                            _newHealth = GetNewHealth(characterDummy, 0.08f);
+                            characterDummy.SpawnHudText("Focus Healing +" + (_newHealth - characterDummy.GetCurrentHealth()) + "HP", string.Empty);
+                            characterDummy.m_CharacterOverworld.m_CharacterStats.SetSpecificHealth(_newHealth, true);
                             if (characterDummy != _player.m_CurrentDummy)
                             {
-                                characterDummy.PlayCharacterAbilityEventRPC(FTK_characterSkill.ID.None);
+                                characterDummy.PlayCharacterAbilityEvent(FTK_characterSkill.ID.None);
                             }
                         }
                     }

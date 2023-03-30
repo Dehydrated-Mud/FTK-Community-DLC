@@ -13,7 +13,7 @@ namespace CommunityDLC {
             Intelligence = 0.40f;
             Awareness = 0.6f;
             Talent = 0.5f;
-            Speed = 0.7f;
+            Speed = 0.68f;
             Luck = 0.5f;
             IsMale = false;
             DefaultHeadSize = false;
