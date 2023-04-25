@@ -14,6 +14,7 @@ namespace CommunityDLC.Objects.CharacterSkills
 {
     public class FocusHealer : FTKAPI_CharacterSkill
     {
+        private CustomLocalizedString focusHealedTextSpawn = new("Focus Healed");
         public FocusHealer() 
         {
             Trigger = TriggerType.AnyLandedAttack | TriggerType.EndTurn | TriggerType.ConvertFocusToAction | TriggerType.RollSlots;
@@ -33,8 +34,9 @@ namespace CommunityDLC.Objects.CharacterSkills
                         CombatPlayerMembers = CombatPlayerMembers.AddItem(_player.m_CurrentDummy).ToList();
                         foreach(CharacterDummy characterDummy in CombatPlayerMembers) 
                         {
-                            _newHealth = GetNewHealth(characterDummy, 0.08f);
-                            characterDummy.SpawnHudText("Focus Healing +" + (_newHealth - characterDummy.GetCurrentHealth()) + "HP", string.Empty);
+                            int healAmount = DLCUtils.HealByPercentage(_player.m_CurrentDummy, 0.08f);
+                            _newHealth = _player.m_CurrentDummy.GetCurrentHealth() + healAmount;
+                            characterDummy.SpawnHudText("Focus Healing +" + healAmount + "HP", string.Empty);
                             characterDummy.m_CharacterOverworld.m_CharacterStats.SetSpecificHealth(_newHealth, true);
                             if (characterDummy != _player.m_CurrentDummy)
                             {
@@ -74,10 +76,11 @@ namespace CommunityDLC.Objects.CharacterSkills
                             Logger.LogWarning("Distance to target is: " + magnitude);
                             if (magnitude <= 2f * _conv)
                             {
-                                int _newHealth = GetNewHealth(characterOverworld.m_CurrentDummy, 0.15f);
-                                if (_newHealth - characterOverworld.m_CurrentDummy.GetCurrentHealth() > 0)
+                                int healAmount = DLCUtils.HealByPercentage(characterOverworld.m_CurrentDummy, 0.15f);
+                                int _newHealth = characterOverworld.m_CurrentDummy.GetCurrentHealth() + healAmount;
+                                if (healAmount > 0)
                                 {
-                                    characterOverworld.SpawnHudText("Focus Healed +" + (_newHealth - characterOverworld.m_CurrentDummy.GetCurrentHealth()) + "HP", string.Empty);
+                                    characterOverworld.SpawnHudText(focusHealedTextSpawn.GetLocalizedString() + " +" + healAmount + "HP", string.Empty);
                                     characterOverworld.m_CharacterStats.SetSpecificHealth(_newHealth, true);
                                     characterOverworld.PlayCharacterAbilityEvent(FTK_characterSkill.ID.None);
                                 }
@@ -87,10 +90,6 @@ namespace CommunityDLC.Objects.CharacterSkills
                     proc = false;
                     break;
             }
-        }
-        internal int GetNewHealth(CharacterDummy _dum, float _fac)
-        {
-            return Math.Min((int)((float)_dum.GetCurrentHealth() + (float)_dum.m_CharacterOverworld.m_CharacterStats.MaxHealth * _fac), _dum.m_CharacterOverworld.m_CharacterStats.MaxHealth);
         }
     }
 }
