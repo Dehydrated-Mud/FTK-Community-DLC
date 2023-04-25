@@ -1,7 +1,7 @@
 bin
 obj
 .idea
-postbuild.bat
+
 # ReSharper is a .NET coding add-in
 _ReSharper*/
 *.[Rr]e[Ss]harper
@@ -11,3 +11,4 @@ _ReSharper*/
 *.suo
 *.user
 *.sln.docstates
+*.bat

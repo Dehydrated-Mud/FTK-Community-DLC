@@ -28,10 +28,10 @@ namespace CommunityDLC {
             DmgGain = 1;
             ShopStock = 1;
             TownMarket = true;
-            DungeonMerchant= true;
+            DungeonMerchant = true;
             NightMarket = true;
             MaxLevel = 13;
-            MinLevel = 7;
+            MinLevel = 3;
             GoldValue = 180;
             PriceScale = false;
             ItemRarity = FTK_itemRarityLevel.ID.rare;

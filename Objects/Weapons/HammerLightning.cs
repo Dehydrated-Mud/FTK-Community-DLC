@@ -9,7 +9,6 @@ namespace CommunityDLC {
     public class HammerLightning : CustomItem {
         public HammerLightning() {
             //int customProf = ProficiencyManager.AddProficiency(new ProficiencySilverSmite());
-
             ID = "CustomHammerLightning";
             Name = new("The Defibrillator");
             Prefab = CommunityDLC.assetBundle.LoadAsset<GameObject>("Assets/customHammerLightning.prefab");
@@ -34,7 +33,7 @@ namespace CommunityDLC {
             NightMarket = true;
             ItemRarity = FTK_itemRarityLevel.ID.rare;
             GoldValue = 233;
-            MinLevel = 8;
+            MinLevel = 4;
             MaxLevel = 13;
             PriceScale = false;
             Icon = CommunityDLC.assetBundleIcons.LoadAsset<Sprite>("Assets/Icons/weaponBlunt.png");
