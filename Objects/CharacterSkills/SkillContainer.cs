@@ -27,6 +27,12 @@ namespace CommunityDLC.Objects.CharacterSkills
         internal SkillSyncer skillSyncer;
         public FTKAPI_CharacterSkill focusHealer;
         public FTKAPI_CharacterSkill divine;
+        public FTKAPI_CharacterSkill findPouch;
+        public FTKAPI_CharacterSkill justiceHeavyDamage;
+        public FTKAPI_CharacterSkill groupMeditate;
+        public FTKAPI_CharacterSkill discipline;
+        public FTKAPI_CharacterSkill combatMeditation;
+        public FTKAPI_CharacterSkill bloodRush;
         public SkillContainer() 
         {
             Reset();
@@ -39,10 +45,21 @@ namespace CommunityDLC.Objects.CharacterSkills
             SkillManager.Instance.moddedDictionary.Clear();
             focusHealer = new FocusHealer();
             divine = new DivineIntervention(this);
+            findPouch = new FindPouch();
+            justiceHeavyDamage = new JusticeHeavyDamage();
+            groupMeditate = new GroupMeditation();
+            discipline = new Discipline();
+            combatMeditation = new CombatMeditation();
+            bloodRush = new RushPlus();
+
         }
         public void SyncDivine(bool _proc)
         {
             Syncer.SyncDivine(_proc);
+        }
+        public void SyncDiscipline(bool _proc)
+        {
+            Syncer.SyncDiscipline(_proc);
         }
         public SkillSyncer Syncer
         {
