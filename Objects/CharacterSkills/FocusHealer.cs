@@ -73,7 +73,7 @@ namespace CommunityDLC.Objects.CharacterSkills
                         foreach (CharacterOverworld characterOverworld in FTKHub.Instance.m_CharacterOverworlds)
                         {
                             float magnitude = (_player.transform.position - characterOverworld.transform.position).magnitude;
-                            Logger.LogWarning("Distance to target is: " + magnitude);
+                            //Logger.LogWarning("Distance to target is: " + magnitude);
                             if (magnitude <= 2f * _conv)
                             {
                                 int healAmount = DLCUtils.HealByPercentage(characterOverworld.m_CurrentDummy, 0.15f);
