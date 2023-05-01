@@ -72,7 +72,7 @@ namespace CommunityDLC.Objects.CharacterSkills
             CustomCharacterStatsDLC customStats = _player.gameObject.GetComponent<CustomCharacterStatsDLC>(); 
             if (customStats != null)
             {
-                justice = customStats.m_JusticeChance;
+                justice = customStats.JusticeChance;
             }
             if (!_player.m_CharacterStats.m_CharacterSkills.m_Justice)
             {
@@ -128,7 +128,7 @@ namespace CommunityDLC.Objects.CharacterSkills
             CustomCharacterStatsDLC customStats = _player.gameObject.GetComponent<CustomCharacterStatsDLC>();
             if (customStats != null)
             {
-                refocus = customStats.m_RefocusChance;
+                refocus = customStats.RefocusChance;
             }
             if (!_player.m_CharacterStats.m_CharacterSkills.m_Refocus)
             {

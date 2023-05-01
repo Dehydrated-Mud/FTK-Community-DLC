@@ -17,18 +17,7 @@ namespace CommunityDLC.Mechanics
 {
     internal class HookApplySlotCombatAction : BaseModule
     {
-        public static HookApplySlotCombatAction instance;
-        public static HookApplySlotCombatAction Instance
-        {
-            get
-            {
-                if(instance == null)
-                {
-                    instance = new HookApplySlotCombatAction();
-                }
-                return instance;
-            }
-        }
+
         public override void Initialize()
         {
             Unload();
@@ -53,7 +42,8 @@ namespace CommunityDLC.Mechanics
                 }
                 else if(_slotSuccess == _slotAmount) 
                 {
-                    _this.GetDummy(_cow).AddProfToDummy(new FTK_proficiencyTable.ID[1] { (FTK_proficiencyTable.ID)Prof }, _fx: false, _hud: false);
+                    FTK_proficiencyTable.ID taunt02 = (FTK_proficiencyTable.ID)FTKAPI.Managers.ProficiencyManager.Instance.enums["taunt02"];
+                    _this.GetDummy(_cow).AddProfToDummy(new FTK_proficiencyTable.ID[1] {taunt02}, _fx: false, _hud: false);
                     _this.GetDummy(_cow).PlayCharacterAbilityEventRPC(FTK_characterSkill.ID.ShieldTaunt);
                     _this.BypassCombatSlotsRPC(_this.GetDummy(_cow).FID, _resetSlots: false, _leaveCombat: false, _alternateAttack: false);
                 }

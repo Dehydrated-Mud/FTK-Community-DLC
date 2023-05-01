@@ -4,6 +4,7 @@ using CommunityDLC.Objects.Proficiencies;
 using CommunityDLC.Objects.CharacterSkills;
 using FTKAPI.Managers;
 using FTKAPI.Objects;
+using FTKAPI.APIs.BattleAPI;
 using GridEditor;
 using HarmonyLib;
 using System.Linq;
@@ -45,7 +46,8 @@ namespace CommunityDLC
         internal MigratedSkills migratedSkills = new MigratedSkills();
         internal HookEncounters hookEncounters = new HookEncounters();
         internal SaveFilePath SaveFilePathhook = new ();
-        
+        internal HookApplySlotCombatAction hookApplySlotCombatAction = new();
+
         private void Awake()
         {
             Instance = this;
@@ -73,6 +75,7 @@ namespace CommunityDLC
             hookAddRemoveModifiers.Initialize();
             migratedSkills.Initialize();
             hookEncounters.Initialize();
+            hookApplySlotCombatAction.Initialize();
             //SaveFilePathhook.Initialize(); Does not work yet
 
             SkipIntro.Init();
@@ -89,8 +92,11 @@ namespace CommunityDLC
             {
                 static void Postfix()
                 {
+                    ProficiencyManager.AddProficiency(new SkipTurnProf());
                     ProficiencyManager.AddProficiency(new ProficiencyCombatMeditate());
                     ProficiencyManager.AddProficiency(new BloodRush());
+                    ProficiencyManager.AddProficiency(new ProficiencyCrushingBlow());
+                    ProficiencyManager.AddProficiency(new Taunt02());
                     /* Base skills example
                     FTK_playerGameStartDB playerGameStartDB = TableManager.Instance.Get<FTK_playerGameStartDB>();
                     FTK_playerGameStart baseSkills = playerGameStartDB.m_Array[(int)FTK_playerGameStart.ID.busker];
@@ -105,7 +111,9 @@ namespace CommunityDLC
                     SkillContainer.Instance.Reset();
                     FTKAPI_CharacterSkill focusHealer = SkillContainer.Instance.focusHealer;
                     FTKAPI_CharacterSkill divine = SkillContainer.Instance.divine;
-                    List<FTKAPI_CharacterSkill> paladinSkills = new List<FTKAPI_CharacterSkill>() { focusHealer, divine };
+                    FTKAPI_CharacterSkill crushingBlow = SkillContainer.Instance.crushingBlow;
+                    //FTKAPI_CharacterSkill bluntForceTrauma = SkillContainer.Instance.bluntForceTrauma;
+                    List<FTKAPI_CharacterSkill> paladinSkills = new List<FTKAPI_CharacterSkill>() { focusHealer, divine};
                     CustomCharacterSkills paladinCharacterSkills = new CustomCharacterSkills()
                     {
                         Skills = paladinSkills
@@ -130,7 +138,7 @@ namespace CommunityDLC
                         CharacterSkills = monkCharacterSkills
                     });
                     // Proficiencies
-                    int taunt02 = ProficiencyManager.AddProficiency(new Taunt02());
+                    
 
 
                     // Items
@@ -150,9 +158,6 @@ namespace CommunityDLC
                     //SanctumStatsManager.ModifySanctum(FTK_sanctumStats.ID.Sanctum05, new Courage());
                     //ModifierManager.ModifyModifier(FTK_characterModifier.ID.Sanctum05, new CustomModifier());
                     TreeManager.Instance.Reset();
-                    //for IL hooks that need to be initialized in the TableManager Postfix patch
-                    HookApplySlotCombatAction.Instance.Prof = taunt02;
-                    HookApplySlotCombatAction.Instance.Initialize();
                 }
             }
         }

@@ -1,17 +1,17 @@
-﻿using FTKAPI.Objects;
-using GridEditor;
+﻿using GridEditor;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using LeafID = CommunityDLC.Objects.SkillTree.Leaf.LeafID;
 using UnityEngine;
 using Google2u;
 using Logger = FTKAPI.Utils.Logger;
 using IL.Rewired.UI.ControlMapper;
+using StaticCharacterSkills = CharacterSkills;
 
 namespace CommunityDLC.Objects.SkillTree.Leaves
 {
+
     public class GenericIndicator : Leaf
     {
         public GenericIndicator(LeafID id) : base(id) 
@@ -86,6 +86,42 @@ namespace CommunityDLC.Objects.SkillTree.Leaves
                 name = "Gives " + FTKUI.GetKeyInfoRichText(Color.magenta, _bold: false, FTKHub.Localized<TextItems>("STR_" + item.ToString()));
             }
             return name;
+        }
+    }
+
+    public class GenericPermanentAura : Leaf
+    {
+        private FTK_characterModifier.ID kernel = FTK_characterModifier.ID.None;
+        public GenericPermanentAura(LeafID leafID, FTK_characterModifier.ID modifier) : base(leafID) 
+        {
+            OnAdd = true;
+            kernel = modifier;
+        }
+        public GenericPermanentAura(LeafID leafID, string modifier) : base(leafID)
+        {
+            OnAdd = true;
+            kernel = DLCUtils.GetMod(modifier);
+        }
+
+        public override void AddAction(CharacterOverworld player)
+        {
+            DLCUtils.AddModifierToAllPlayers(kernel);
+        }
+
+        public string GetLocalizedName()
+        {
+            if (kernel != FTK_characterModifier.ID.None) 
+            { 
+                FTK_characterModifier mod = FTK_characterModifierDB.GetDB().GetEntry(kernel);
+                string baseText = StaticCharacterSkills.GetModDisplay(mod, false);
+                string[] splitText = baseText.Split(' ');
+                if (splitText.Length > 1)
+                {
+                    return splitText[0] + " party " + splitText[1];
+                }
+            }
+            Logger.LogError($"Was not able to get the localized name of {ID}");
+            return "no description";
         }
     }
 }

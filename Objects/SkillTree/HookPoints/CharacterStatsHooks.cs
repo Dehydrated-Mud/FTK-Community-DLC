@@ -61,8 +61,8 @@ namespace CommunityDLC.Objects.SkillTree
             CustomCharacterStatsDLC customStats = _this.gameObject.GetComponent<CustomCharacterStatsDLC>();
             if (customStats != null)
             {
-                Logger.LogWarning("Clearing CharacterStats Mods");
                 customStats.ClearMods();
+                DLCUtils.ValidateWeaponType(_this.m_CharacterOverworld);
             }
             foreach (FTK_characterModifier.ID characterMod in _this.m_CharacterMods)
             {
@@ -94,9 +94,11 @@ namespace CommunityDLC.Objects.SkillTree
                     {
                         //Logger.LogWarning("CustomStats not null");
                         DLCCustomModifier entry3 = (DLCCustomModifier)entry;
-                        customStats.m_JusticeChance += entry3.JusticeChance;
-                        customStats.m_RefocusChance += entry3.RefocusChance;
-                        customStats.m_DisciplineFocus += entry3.DisciplineFocus;
+                        customStats.JusticeChance += entry3.JusticeChance;
+                        customStats.RefocusChance += entry3.RefocusChance;
+                        customStats.DisciplineFocus += entry3.DisciplineFocus;
+                        customStats.SteadfastChance += entry3.SteadfastChance;
+                        
                         customStats.DamageModifiers[WeaponType.axe].Add(entry3.Axe);
                         customStats.DamageModifiers[WeaponType.bladed].Add(entry3.Bladed);
                         customStats.DamageModifiers[WeaponType.music].Add(entry3.Music);
@@ -131,7 +133,6 @@ namespace CommunityDLC.Objects.SkillTree
             }
             if (customStats)
             {
-                Logger.LogWarning("Updating Damage");
                 _this.m_ModAttackAll += GetDamage(_this.m_CharacterOverworld, customStats);
             }
             //TODO: Tally custom and apply
@@ -140,7 +141,6 @@ namespace CommunityDLC.Objects.SkillTree
         private void TallyCharacterDefenseHook(On.CharacterStats.orig_TallyCharacterDefense _orig, CharacterStats _this)
         {
             _orig(_this);
-            Logger.LogWarning("Now tallying Defense");
             ModifierTree tree = TreeManager.Instance.m_modTrees[_this.m_CharacterOverworld.m_FTKPlayerID.TurnIndex]; //Get player's tree
             CustomCharacterStatsDLC customStats = _this.gameObject.GetComponent<CustomCharacterStatsDLC>();
             if (customStats != null)
@@ -153,6 +153,8 @@ namespace CommunityDLC.Objects.SkillTree
                     if (entry is DLCCustomModifier) // Check if modifier is one of our indicator leafs. 
                     {
                         DLCCustomModifier entry2 = (DLCCustomModifier)entry;
+                        customStats.ImperviousArmor += entry2.ImperviousArmor;
+                        customStats.ImperviousResist += entry2.ImperviousResist;
                         if (entry2.Conditional && ((entry2.m_Method & Method.Defense) == Method.Defense))
                         {
                             Logger.LogInfo("Attempting to call conditionalTally");
@@ -161,9 +163,10 @@ namespace CommunityDLC.Objects.SkillTree
                     }
                 }
                 int[] customDefenseMods = GetDefense(_this.m_CharacterOverworld, customStats);
+                
                 _this.m_ModAttackPhysical += customDefenseMods[0];
                 _this.m_ModAttackMagic += customDefenseMods[1];
-                _this.m_ModEvadeRating += customStats.m_EvasionMod; // Is this necessary? Can't we just add directly to character stats in the conditional tally?
+                _this.m_ModEvadeRating += customStats.EvasionMod; // Is this necessary? Can't we just add directly to character stats in the conditional tally?
             }
         }
         public override void Unload()
@@ -222,7 +225,7 @@ namespace CommunityDLC.Objects.SkillTree
 
                 float resistFromFactor = (characterStats.TotalResist + mod.m_DefAdd) * mod.m_DefFac;
                 float newResist = resistFromFactor + mod.m_DefAdd;
-
+                Logger.LogWarning($"Granting +{newArmor} physical and +{newResist} magical defense");
                 return new int[2] { (int)newArmor, (int)newResist };
             }
             Logger.LogWarning("Could not get player dummy, returning 0 for weapon type modifier");

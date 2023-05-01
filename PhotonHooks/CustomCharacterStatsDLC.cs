@@ -10,6 +10,8 @@ using WeaponSubType = Weapon.WeaponSubType;
 using System.Reflection;
 using FTKAPI.Objects;
 using Logger = FTKAPI.Utils.Logger;
+using FTKAPI.APIs.BattleAPI;
+
 namespace CommunityDLC.PhotonHooks
 {
     public class CustomCharacterStatsDLC : CustomCharacterStats
@@ -23,18 +25,21 @@ namespace CommunityDLC.PhotonHooks
             DefendAdd
         }
 
-        public float m_JusticeChance;
-        public float m_RefocusChance;
-
-        public int m_DisciplineFocus;
-
-        public float m_EvasionMod;
+        // TODO: "Convert" all of these to BattleAPI stats
+        public float JusticeChance { get; set; } = 0;
+        public float RefocusChance { get; set; } = 0;
+        public float SteadfastChance { get; set; } = 0;
+        public int DisciplineFocus { get; set; } = 0;
+        public int ImperviousArmor { get; set; } = 0;
+        public int ImperviousResist { get; set; } = 0;
+        public float EvasionMod { get; set; } = 0; // I don't think this is necessary as the original characterstats has an evasionmod that we can add to directly.
 
         public bool GuaranteeCrit { get; set; }
         public Dictionary<WeaponType, WeaponMod> DamageModifiers { get; set; } = new Dictionary<WeaponType, WeaponMod>();
         public Dictionary<WeaponSubType, WeaponMod> SubDamageModifiers { get; set; } = new Dictionary<WeaponSubType, WeaponMod>();
         public void Awake()
         {
+            m_CharacterOverworld = this.gameObject.GetComponent<CharacterOverworld>();
             ClearMods();
             ClearDefense();
         }
@@ -65,16 +70,30 @@ namespace CommunityDLC.PhotonHooks
                 {WeaponSubType.chaos, new WeaponMod() },
                 {WeaponSubType.ice, new WeaponMod() },
             };
-            m_JusticeChance = 0f;
-            m_RefocusChance = 0f;
-
-            m_DisciplineFocus = 0;
-            
+            JusticeChance = 0f;
+            RefocusChance = 0f;
+            SteadfastChance = 0f;
+            DisciplineFocus = 0;
         }
         public void ClearDefense()
         {
             Logger.LogWarning("Clearing Defense");
-            m_EvasionMod = 0f;
+            EvasionMod = 0f;
+            ImperviousArmor = 0;
+            ImperviousResist = 0;
+        }
+
+        public override void SendCustomStats()
+        {
+            if (m_CharacterOverworld.GetCurrentDummy())
+            {
+                BattleAPI.Instance.SetAStat(m_CharacterOverworld.GetCurrentDummy(), ImperviousArmor, SetFloats.ImperviousArmor, CombatValueOperators.Add);
+                BattleAPI.Instance.SetAStat(m_CharacterOverworld.GetCurrentDummy(), ImperviousResist, SetFloats.ImperviousResist, CombatValueOperators.Add);
+            }
+            else
+            {
+                Logger.LogError("Could not find a CharacterDummy for CustomStats object.");
+            }
         }
     }
 

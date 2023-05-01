@@ -1,8 +1,8 @@
-{
-  "name": "CommunityDLC",
-  "description": "A community driven mod to expand For the King",
-  "website_url": "https://github.com/Dehydrated-Mud/FTK-Community-DLC/blob/main/readme.md",
-  "version_number": "0.1.0",
+﻿{
+  "name": "MoreBugs",
+  "description": "A mod that makes FTK crash more often, free of charge! (this is a test branch, don't download unless you know what you are doing.)",
+  "website_url": "https://discord.gg/tZRjxSDnaG",
+  "version_number": "0.2.8",
   "dependencies": [
     "BepInEx-BepInExPack_ForTheKing-5.4.19",
     "Amadare-HookGenPatcher-1.2.1"

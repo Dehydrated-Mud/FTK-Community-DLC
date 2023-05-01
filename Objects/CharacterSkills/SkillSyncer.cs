@@ -37,7 +37,7 @@ namespace CommunityDLC.Objects.CharacterSkills
         {
             SkillContainer.Instance.discipline.proc = _proc;
         }
-        public void SyncImpervious(FTKPlayerID player, int armor, int resist)
+        /*public void SyncImpervious(FTKPlayerID player, int armor, int resist)
         {
             photonView.RPC("SyncImperviousRPC", PhotonTargets.All, new object[3]
             {
@@ -52,7 +52,7 @@ namespace CommunityDLC.Objects.CharacterSkills
             CustomCharacterStats _cs = _cow.gameObject.GetComponent<CustomCharacterStats>();
             _cs.imperviousArmor = armor;
             _cs.imperviousResistance = resist;
-        }
+        }*/
 
         public void AddRemoveModifier(FTKPlayerID player, FTK_characterModifier.ID id, bool adding = true)
         {

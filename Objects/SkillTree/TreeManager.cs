@@ -54,6 +54,12 @@ namespace CommunityDLC.Objects.SkillTree
                     case FTK_playerGameStart.ID.scholar:
                         m_modTrees[playerID] = new ScholarTree() { Stats = characterStats };
                         break;
+                    case FTK_playerGameStart.ID.treasureHunter:
+                        m_modTrees[playerID] = new TreasureHunterTree() { Stats = characterStats };
+                        break;
+                    case FTK_playerGameStart.ID.blacksmith:
+                        m_modTrees[playerID] = new BlackSmithTree() { Stats = characterStats };
+                        break;
                     default:
                         m_modTrees[playerID] = new TestTree() { Stats = characterStats };
                         break;

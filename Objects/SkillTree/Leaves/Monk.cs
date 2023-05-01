@@ -56,7 +56,7 @@ namespace CommunityDLC.Objects.SkillTree.Leaves
                     {
                         if (_stats.m_CharacterOverworld.GetCurrentDummy().m_EventListener.m_Weapon.m_WeaponType == Weapon.WeaponType.unarmed)
                         {
-                            _customStats.m_EvasionMod += evasion;
+                            _customStats.EvasionMod += evasion;
                         }
                     }
                     break;

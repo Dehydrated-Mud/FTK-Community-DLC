@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using FTKAPI.APIs.BattleAPI;
 using FTKAPI.Objects;
 using FTKAPI.Objects.SkillHooks;
+using static ProficiencyBase;
 using Logger = FTKAPI.Utils.Logger;
 namespace CommunityDLC.Mechanics
 {
@@ -18,31 +20,19 @@ namespace CommunityDLC.Mechanics
 
         private void AddToDummyHook(On.ProficiencyTaunt.orig_AddToDummy _orig, ProficiencyTaunt _self, CharacterDummy _dummy) 
         {
+            if (_dummy.m_SufferingProficiencies.ContainsKey(Category.Taunt))
+            {
+                _dummy.m_SufferingProficiencies[Category.Taunt].m_Proficiency.End(_dummy);
+            }
             _orig(_self, _dummy);
-            CustomCharacterStats customStats = _dummy.m_CharacterOverworld.gameObject.GetComponent<CustomCharacterStats>();
-            if (customStats != null)
-            {
-                customStats.imperviousArmor += _dummy.m_TauntArmor;
-                customStats.imperviousResistance += _dummy.m_TauntResist;
-            }
-            else
-            {
-                Logger.LogWarning("Could not find customstats on AddToDummy!");
-            }
+            BattleAPI.Instance.SetAStat(_dummy, _dummy.m_TauntArmor, SetFloats.ImperviousArmor, CombatValueOperators.Add);
+            BattleAPI.Instance.SetAStat(_dummy, _dummy.m_TauntResist, SetFloats.ImperviousResist, CombatValueOperators.Add);
         }
 
         private void EndHook(On.ProficiencyTaunt.orig_End _orig, ProficiencyTaunt _self, CharacterDummy _dummy)
         {
-            CustomCharacterStats customStats = _dummy.m_CharacterOverworld.gameObject.GetComponent<CustomCharacterStats>();
-            if (customStats != null)
-            {
-                customStats.imperviousArmor -= _dummy.m_TauntArmor;
-                customStats.imperviousResistance -= _dummy.m_TauntResist;
-            }
-            else
-            {
-                Logger.LogWarning("Could not find customstats on AddToDummy!");
-            }
+            BattleAPI.Instance.SetAStat(_dummy, _dummy.m_TauntArmor, SetFloats.ImperviousArmor, CombatValueOperators.Subtract);
+            BattleAPI.Instance.SetAStat(_dummy, _dummy.m_TauntResist, SetFloats.ImperviousResist, CombatValueOperators.Subtract);
             _orig(_self, _dummy);
         }
 

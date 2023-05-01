@@ -1,4 +1,6 @@
-﻿using FTKAPI.Managers;
+﻿using CommunityDLC.Objects.Modifiers;
+using FTKAPI.Managers;
+using FTKAPI.Objects;
 using GridEditor;
 using System;
 using System.Collections.Generic;
@@ -12,6 +14,8 @@ namespace CommunityDLC.Objects.SkillTree.Leaves
     {
         public static Dictionary<LeafID, FTK_characterModifier.ID> Initialize()
         { 
+            // Ensure that other modifiers are added first
+            InitializeBasicStatMods.Init();
             // Adds our leaf as a modifier, and adds it to the lookup. This allows us to use LeafIDs instead of IDs (which are strings)
             // This way we can check that all the IDs exist at compile time rather than runtime.
 
@@ -24,57 +28,87 @@ namespace CommunityDLC.Objects.SkillTree.Leaves
             dict[LeafID.TestIndicator2] = (FTK_characterModifier.ID)ModifierManager.AddModifier(new TestLeafIndicator2());*/
             for (int i = 1; i < 29; i++)
             {
-                dict[(LeafID)i] = (FTK_characterModifier.ID)ModifierManager.AddModifier(new GenericIndicator((LeafID)i));
+                dict[(LeafID)i] = AddMod(new GenericIndicator((LeafID)i));
             }
-            dict[LeafID.WoodCutterFocus1] = (FTK_characterModifier.ID)ModifierManager.AddModifier(new GenericMaxFocus(LeafID.WoodCutterFocus1, 1));
-            dict[LeafID.WoodCutterFocus2] = (FTK_characterModifier.ID)ModifierManager.AddModifier(new GenericMaxFocus(LeafID.WoodCutterFocus2, 2));
-            dict[LeafID.WoodCutterOffa1] = (FTK_characterModifier.ID)ModifierManager.AddModifier(new GenericTalent(LeafID.WoodCutterOffa1, 0.05f));
-            dict[LeafID.WoodCutterOffa2] = (FTK_characterModifier.ID)ModifierManager.AddModifier(new GenericTalent(LeafID.WoodCutterOffa2, 0.05f));
-            dict[LeafID.WoodCutterOffa3] = (FTK_characterModifier.ID)ModifierManager.AddModifier(new GenericTalent(LeafID.WoodCutterOffa3, 0.05f));
-            dict[LeafID.WoodCutterOffb1] = (FTK_characterModifier.ID)ModifierManager.AddModifier(new ModWoodCutterIntVit(LeafID.WoodCutterOffb1));
-            dict[LeafID.WoodCutterOffb2] = (FTK_characterModifier.ID)ModifierManager.AddModifier(new ModWoodCutterIntVit(LeafID.WoodCutterOffb2));
-            dict[LeafID.WoodCutterOffb3] = (FTK_characterModifier.ID)ModifierManager.AddModifier(new ModWoodCutterIntVit(LeafID.WoodCutterOffb3));
-            dict[LeafID.WoodCutterDen] = (FTK_characterModifier.ID)ModifierManager.AddModifier(new GenericTalent(LeafID.WoodCutterDen, 0.06f));
-            dict[LeafID.WoodCutterCamper] = (FTK_characterModifier.ID)ModifierManager.AddModifier(new ModFindPouch(LeafID.WoodCutterCamper));
-            dict[LeafID.WoodCutterTable] = (FTK_characterModifier.ID)ModifierManager.AddModifier(new ModBleedImmunity(LeafID.WoodCutterTable));
-            dict[LeafID.WoodCutterJustice] = (FTK_characterModifier.ID)ModifierManager.AddModifier(new ModJustice(LeafID.WoodCutterJustice)); //unused
-            dict[LeafID.WoodCutterVindication] = (FTK_characterModifier.ID)ModifierManager.AddModifier(new ModVindication(LeafID.WoodCutterVindication));
-            dict[LeafID.WoodCutterDoubleEdge] = (FTK_characterModifier.ID)ModifierManager.AddModifier(new ModDoubleEdge(LeafID.WoodCutterDoubleEdge));
-            dict[LeafID.WoodCutterLute1] = (FTK_characterModifier.ID)ModifierManager.AddModifier(new WoodCutterLute(LeafID.WoodCutterLute1));
-            dict[LeafID.WoodCutterLute2] = (FTK_characterModifier.ID)ModifierManager.AddModifier(new WoodCutterLute(LeafID.WoodCutterLute2));
+            dict[LeafID.WoodCutterFocus1] = AddMod(new GenericMaxFocus(LeafID.WoodCutterFocus1, 1));
+            dict[LeafID.WoodCutterFocus2] = AddMod(new GenericMaxFocus(LeafID.WoodCutterFocus2, 2));
+            dict[LeafID.WoodCutterOffa1] = AddMod(new GenericTalent(LeafID.WoodCutterOffa1, 0.05f));
+            dict[LeafID.WoodCutterOffa2] = AddMod(new GenericTalent(LeafID.WoodCutterOffa2, 0.05f));
+            dict[LeafID.WoodCutterOffa3] = AddMod(new GenericTalent(LeafID.WoodCutterOffa3, 0.05f));
+            dict[LeafID.WoodCutterOffb1] = AddMod(new ModWoodCutterIntVit(LeafID.WoodCutterOffb1));
+            dict[LeafID.WoodCutterOffb2] = AddMod(new ModWoodCutterIntVit(LeafID.WoodCutterOffb2));
+            dict[LeafID.WoodCutterOffb3] = AddMod(new ModWoodCutterIntVit(LeafID.WoodCutterOffb3));
+            dict[LeafID.WoodCutterDen] = AddMod(new GenericTalent(LeafID.WoodCutterDen, 0.06f));
+            dict[LeafID.WoodCutterCamper] = AddMod(new ModFindPouch(LeafID.WoodCutterCamper));
+            dict[LeafID.WoodCutterTable] = AddMod(new ModBleedImmunity(LeafID.WoodCutterTable));
+            dict[LeafID.WoodCutterJustice] = AddMod(new ModJustice(LeafID.WoodCutterJustice)); //unused
+            dict[LeafID.WoodCutterVindication] = AddMod(new ModVindication(LeafID.WoodCutterVindication));
+            dict[LeafID.WoodCutterDoubleEdge] = AddMod(new ModDoubleEdge(LeafID.WoodCutterDoubleEdge));
+            dict[LeafID.WoodCutterLute1] = AddMod(new WoodCutterLute(LeafID.WoodCutterLute1));
+            dict[LeafID.WoodCutterLute2] = AddMod(new WoodCutterLute(LeafID.WoodCutterLute2));
 
-            dict[LeafID.MonkOffa1] = (FTK_characterModifier.ID)ModifierManager.AddModifier(new GenericAwareness(LeafID.MonkOffa1, 0.06f));
-            dict[LeafID.MonkOffa2] = (FTK_characterModifier.ID)ModifierManager.AddModifier(new GenericAwareness(LeafID.MonkOffa2, 0.06f));
-            dict[LeafID.MonkOffa3] = (FTK_characterModifier.ID)ModifierManager.AddModifier(new GenericAwareness(LeafID.MonkOffa3, 0.06f));
-            dict[LeafID.MonkOffb1] = (FTK_characterModifier.ID)ModifierManager.AddModifier(new GenericVitality(LeafID.MonkOffb1, 0.03f));
-            dict[LeafID.MonkOffb2] = (FTK_characterModifier.ID)ModifierManager.AddModifier(new GenericVitality(LeafID.MonkOffb2, 0.03f));
-            dict[LeafID.MonkOffb3] = (FTK_characterModifier.ID)ModifierManager.AddModifier(new GenericVitality(LeafID.MonkOffb3, 0.03f));
-            dict[LeafID.MonkUnarmedDmg1] = (FTK_characterModifier.ID)ModifierManager.AddModifier(new MonkUnarmedDmg(LeafID.MonkUnarmedDmg1, 1f));
-            dict[LeafID.MonkUnarmedDmg2] = (FTK_characterModifier.ID)ModifierManager.AddModifier(new MonkUnarmedDmg(LeafID.MonkUnarmedDmg2, 2f));
-            dict[LeafID.MonkCombatMeditate] = (FTK_characterModifier.ID)ModifierManager.AddModifier(new MonkCombatMeditate(LeafID.MonkCombatMeditate));
-            dict[LeafID.MonkGroupMeditate] = (FTK_characterModifier.ID)ModifierManager.AddModifier(new MonkGroupMeditation(LeafID.MonkGroupMeditate));
-            dict[LeafID.MonkDisciplineUpgrade] = (FTK_characterModifier.ID)ModifierManager.AddModifier(new MonkDisciplineThreshold(LeafID.MonkDisciplineUpgrade, 4));
-            dict[LeafID.MonkDisciplineUpgrade2] = (FTK_characterModifier.ID)ModifierManager.AddModifier(new MonkDisciplineThreshold(LeafID.MonkDisciplineUpgrade2, 1));
-            dict[LeafID.MonkRefocusChance] = (FTK_characterModifier.ID)ModifierManager.AddModifier(new GenericRefocusChance(LeafID.MonkRefocusChance, 0.15f));
-            dict[LeafID.MonkPrimordialOak] = (FTK_characterModifier.ID)ModifierManager.AddModifier(new GenericGiveItem(LeafID.MonkPrimordialOak, FTK_itembase.ID.staffGoatWizard));
-            dict[LeafID.MonkTrainer] = (FTK_characterModifier.ID)ModifierManager.AddModifier(new MonkEvade(LeafID.MonkTrainer, 0.1f));
+            dict[LeafID.MonkOffa1] = AddMod(new GenericAwareness(LeafID.MonkOffa1, 0.06f));
+            dict[LeafID.MonkOffa2] = AddMod(new GenericAwareness(LeafID.MonkOffa2, 0.06f));
+            dict[LeafID.MonkOffa3] = AddMod(new GenericAwareness(LeafID.MonkOffa3, 0.06f));
+            dict[LeafID.MonkOffb1] = AddMod(new GenericVitality(LeafID.MonkOffb1, 0.03f));
+            dict[LeafID.MonkOffb2] = AddMod(new GenericVitality(LeafID.MonkOffb2, 0.03f));
+            dict[LeafID.MonkOffb3] = AddMod(new GenericVitality(LeafID.MonkOffb3, 0.03f));
+            dict[LeafID.MonkUnarmedDmg1] = AddMod(new MonkUnarmedDmg(LeafID.MonkUnarmedDmg1, 1f));
+            dict[LeafID.MonkUnarmedDmg2] = AddMod(new MonkUnarmedDmg(LeafID.MonkUnarmedDmg2, 2f));
+            dict[LeafID.MonkCombatMeditate] = AddMod(new MonkCombatMeditate(LeafID.MonkCombatMeditate));
+            dict[LeafID.MonkGroupMeditate] = AddMod(new MonkGroupMeditation(LeafID.MonkGroupMeditate));
+            dict[LeafID.MonkDisciplineUpgrade] = AddMod(new MonkDisciplineThreshold(LeafID.MonkDisciplineUpgrade, 4));
+            dict[LeafID.MonkDisciplineUpgrade2] = AddMod(new MonkDisciplineThreshold(LeafID.MonkDisciplineUpgrade2, 1));
+            dict[LeafID.MonkRefocusChance] = AddMod(new GenericRefocusChance(LeafID.MonkRefocusChance, 0.15f));
+            dict[LeafID.MonkPrimordialOak] = AddMod(new GenericGiveItem(LeafID.MonkPrimordialOak, FTK_itembase.ID.staffGoatWizard));
+            dict[LeafID.MonkTrainer] = AddMod(new MonkEvade(LeafID.MonkTrainer, 0.1f));
 
-            dict[LeafID.ScholarOffA1] = (FTK_characterModifier.ID)ModifierManager.AddModifier(new ScholarOffA(LeafID.ScholarOffA1));
-            dict[LeafID.ScholarOffA2] = (FTK_characterModifier.ID)ModifierManager.AddModifier(new ScholarOffA(LeafID.ScholarOffA2));
-            dict[LeafID.ScholarOffA3] = (FTK_characterModifier.ID)ModifierManager.AddModifier(new ScholarOffA(LeafID.ScholarOffA3));
-            dict[LeafID.ScholarOffB1] = (FTK_characterModifier.ID)ModifierManager.AddModifier(new ScholarOffB(LeafID.ScholarOffB1));
-            dict[LeafID.ScholarOffB2] = (FTK_characterModifier.ID)ModifierManager.AddModifier(new ScholarOffB(LeafID.ScholarOffB2));
-            dict[LeafID.ScholarOffB3] = (FTK_characterModifier.ID)ModifierManager.AddModifier(new ScholarOffB(LeafID.ScholarOffB3));
-            dict[LeafID.ScholarXPTome] = (FTK_characterModifier.ID)ModifierManager.AddModifier(new XPWithTome(LeafID.ScholarXPTome));
-            dict[LeafID.ScholarDMGWand] = (FTK_characterModifier.ID)ModifierManager.AddModifier(new ScholarWandDamage(LeafID.ScholarDMGWand, 2));
-            dict[LeafID.ScholarPartyStaff] = (FTK_characterModifier.ID)ModifierManager.AddModifier(new ScholarStaffDef(LeafID.ScholarPartyStaff));
-            dict[LeafID.ScholarMageFire] = (FTK_characterModifier.ID)ModifierManager.AddModifier(new MageChoiceFire(LeafID.ScholarMageFire));
-            dict[LeafID.ScholarMageWater] = (FTK_characterModifier.ID)ModifierManager.AddModifier(new MageChoiceWater(LeafID.ScholarMageWater));
-            dict[LeafID.ScholarMageLightning] = (FTK_characterModifier.ID)ModifierManager.AddModifier(new MageChoiceLightning(LeafID.ScholarMageLightning));
-            dict[LeafID.ScholarMageIce] = (FTK_characterModifier.ID)ModifierManager.AddModifier(new MageChoiceIce(LeafID.ScholarMageIce));
-            dict[LeafID.ScholarWandRefocus] = (FTK_characterModifier.ID)ModifierManager.AddModifier(new WandFocus(LeafID.ScholarWandRefocus));
-            dict[LeafID.ScholarBloodRush] = (FTK_characterModifier.ID)ModifierManager.AddModifier(new BloodRushLeaf(LeafID.ScholarBloodRush));
+            dict[LeafID.ScholarOffA1] = AddMod(new ScholarOffA(LeafID.ScholarOffA1));
+            dict[LeafID.ScholarOffA2] = AddMod(new ScholarOffA(LeafID.ScholarOffA2));
+            dict[LeafID.ScholarOffA3] = AddMod(new ScholarOffA(LeafID.ScholarOffA3));
+            dict[LeafID.ScholarOffB1] = AddMod(new ScholarOffB(LeafID.ScholarOffB1));
+            dict[LeafID.ScholarOffB2] = AddMod(new ScholarOffB(LeafID.ScholarOffB2));
+            dict[LeafID.ScholarOffB3] = AddMod(new ScholarOffB(LeafID.ScholarOffB3));
+            dict[LeafID.ScholarXPTome] = AddMod(new XPWithTome(LeafID.ScholarXPTome));
+            dict[LeafID.ScholarDMGWand] = AddMod(new ScholarWandDamage(LeafID.ScholarDMGWand, 2));
+            dict[LeafID.ScholarPartyStaff] = AddMod(new ScholarStaffDef(LeafID.ScholarPartyStaff));
+            dict[LeafID.ScholarMageFire] = AddMod(new MageChoiceFire(LeafID.ScholarMageFire));
+            dict[LeafID.ScholarMageWater] = AddMod(new MageChoiceWater(LeafID.ScholarMageWater));
+            dict[LeafID.ScholarMageLightning] = AddMod(new MageChoiceLightning(LeafID.ScholarMageLightning));
+            dict[LeafID.ScholarMageIce] = AddMod(new MageChoiceIce(LeafID.ScholarMageIce));
+            dict[LeafID.ScholarWandRefocus] = AddMod(new WandFocus(LeafID.ScholarWandRefocus));
+            dict[LeafID.ScholarBloodRush] = AddMod(new BloodRushLeaf(LeafID.ScholarBloodRush));
+
+            dict[LeafID.THPartyInt] = AddMod(new GenericPermanentAura(LeafID.THPartyInt, "GenericIntelligence02"));
+            dict[LeafID.THPartyStr] = AddMod(new GenericPermanentAura(LeafID.THPartyStr, "GenericStrength02"));
+            dict[LeafID.THPartyAwr] = AddMod(new GenericPermanentAura(LeafID.THPartyAwr, "GenericAwareness04"));
+            dict[LeafID.THPartyLuck] = AddMod(new GenericPermanentAura(LeafID.THPartyLuck, "GenericLuck10"));
+            dict[LeafID.THPartyTal] = AddMod(new GenericPermanentAura(LeafID.THPartyTal, "GenericTalent02"));
+            dict[LeafID.THPartyEvade] = AddMod(new GenericPermanentAura(LeafID.THPartyEvade, "GenericEvasion02"));
+            dict[LeafID.THPartyFocus] = AddMod(new GenericPermanentAura(LeafID.THPartyFocus, "GenericFocus01"));
+            dict[LeafID.THPartyFire] = AddMod(new THFireImmunity(LeafID.THPartyFire));
+            dict[LeafID.THPartyConfuse] = AddMod(new THConfuseImmunity(LeafID.THPartyConfuse));
+            dict[LeafID.THGoldMult] = AddMod(new THGoldMult(LeafID.THGoldMult));
+            dict[LeafID.THSpecialAction] = AddMod(new THAlwaysPrepared(LeafID.THSpecialAction));
+
+            dict[LeafID.BlackSmithOffA1] = AddMod(new BlackSmithOffA(LeafID.BlackSmithOffA1));
+            dict[LeafID.BlackSmithOffA2] = AddMod(new BlackSmithOffA(LeafID.BlackSmithOffA2));
+            dict[LeafID.BlackSmithOffA3] = AddMod(new BlackSmithOffA(LeafID.BlackSmithOffA3));
+            dict[LeafID.BlackSmithOffB1] = AddMod(new BlackSmithOffB(LeafID.BlackSmithOffB1));
+            dict[LeafID.BlackSmithOffB2] = AddMod(new BlackSmithOffB(LeafID.BlackSmithOffB2));
+            dict[LeafID.BlackSmithOffB3] = AddMod(new BlackSmithOffB(LeafID.BlackSmithOffB3));
+            dict[LeafID.BlackSmithBFTrauma] = AddMod(new BluntTrauma(LeafID.BlackSmithBFTrauma));
+            dict[LeafID.BlackSmithRebuttal] = AddMod(new Rebuttal(LeafID.BlackSmithRebuttal));
+            dict[LeafID.BlackSmithRetaliate] = AddMod(new Retaliation(LeafID.BlackSmithRetaliate));
+            dict[LeafID.BlackSmithSteady] = AddMod(new IncreasedSteady(LeafID.BlackSmithSteady));
+            dict[LeafID.BlackSmithCrush] = AddMod(new CrushingBlow(LeafID.BlackSmithCrush));
+            dict[LeafID.BlackSmithLeatherBack] = AddMod(new LeatherBack(LeafID.BlackSmithLeatherBack));
             return dict;
+        }
+
+        private static FTK_characterModifier.ID AddMod(CustomModifier mod)
+        {
+            return (FTK_characterModifier.ID)ModifierManager.AddModifier(mod);
         }
     }
 }

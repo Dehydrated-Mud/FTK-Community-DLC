@@ -1,4 +1,5 @@
-﻿using FTKAPI.Objects;
+﻿using FTKAPI.APIs.BattleAPI;
+using FTKAPI.Objects;
 using GridEditor;
 using HarmonyLib;
 using SimpleBindDemo;
@@ -15,11 +16,28 @@ namespace CommunityDLC.Objects.CharacterSkills
     public class FocusHealer : FTKAPI_CharacterSkill
     {
         private CustomLocalizedString focusHealedTextSpawn = new("Focus Healed");
+        private SpecialCombatAction specialAction = new SpecialCombatAction
+        {
+            Taunt = true
+        };
         public FocusHealer() 
         {
             Trigger = TriggerType.AnyLandedAttack | TriggerType.EndTurn | TriggerType.ConvertFocusToAction | TriggerType.RollSlots;
             Name = new CustomLocalizedString("Passive Skill: Focus Healer");
             Description = new CustomLocalizedString("If this player has used focus at some point in their turn in the overworld, then at the end of their turn ally's within 2 hexes will receive healing. In combat, the party is healed if this player uses focus on an attack and that attack is not dodged.");
+        }
+
+        public override void Skill(CharacterOverworld _cow, Query query)
+        {
+            switch(query)
+            {
+                case Query.StartCombat:
+                    if (_cow.GetCurrentDummy()) 
+                    {
+                        BattleAPI.Instance.DeclareSpecialAction(_cow.GetCurrentDummy(), specialAction);
+                    }
+                    break;
+            }
         }
         public override void Skill(CharacterOverworld _player, TriggerType _trig, AttackAttempt _atk)
         {

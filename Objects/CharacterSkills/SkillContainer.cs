@@ -33,6 +33,11 @@ namespace CommunityDLC.Objects.CharacterSkills
         public FTKAPI_CharacterSkill discipline;
         public FTKAPI_CharacterSkill combatMeditation;
         public FTKAPI_CharacterSkill bloodRush;
+        public FTKAPI_CharacterSkill steadfast;
+        public FTKAPI_CharacterSkill crushingBlow;
+        public FTKAPI_CharacterSkill bluntForceTrauma;
+        public FTKAPI_CharacterSkill rebuttal;
+        public FTKAPI_CharacterSkill alwaysPrepared;
         public SkillContainer() 
         {
             Reset();
@@ -51,7 +56,11 @@ namespace CommunityDLC.Objects.CharacterSkills
             discipline = new Discipline();
             combatMeditation = new CombatMeditation();
             bloodRush = new RushPlus();
-
+            steadfast = new Steadfast();
+            crushingBlow = new CrushingBlow();
+            bluntForceTrauma = new BluntForceTrauma();
+            rebuttal = new BlockReflect();
+            alwaysPrepared = new AlwaysPrepared();
         }
         public void SyncDivine(bool _proc)
         {

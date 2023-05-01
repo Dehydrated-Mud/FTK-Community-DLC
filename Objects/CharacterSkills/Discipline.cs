@@ -91,7 +91,7 @@ namespace CommunityDLC.Objects.CharacterSkills
                 Logger.LogError("No customStats object, exiting discipline");
                 return false;
             }
-            int threshold = customStats.m_DisciplineFocus;
+            int threshold = customStats.DisciplineFocus;
             List<CharacterDummy> allies = EncounterSession.Instance.GetOtherCombatPlayerMembers(_player.m_CurrentDummy);
             foreach (CharacterDummy ally in allies)
             {

@@ -47,7 +47,10 @@ namespace CommunityDLC.UIElements
 
             //Logger.LogWarning("Entering our new GetModDisplay method!");
             string text = orig(_o, _format);
-
+            if (text != string.Empty && !text.EndsWith(Environment.NewLine))
+            {
+                text += Environment.NewLine;
+            }
             if (_o is DLCCustomModifier)
             {
                 DLCCustomModifier _mod = (DLCCustomModifier)_o;
@@ -58,6 +61,11 @@ namespace CommunityDLC.UIElements
                 else if (_mod is GenericGiveItem)
                 {
                     GenericGiveItem _mod2 = (GenericGiveItem)_o;
+                    text += _mod2.GetLocalizedName() + "\n";
+                }
+                else if (_mod is GenericPermanentAura)
+                {
+                    GenericPermanentAura _mod2 = (GenericPermanentAura)_o;
                     text += _mod2.GetLocalizedName() + "\n";
                 }
                 Type type = _mod.GetType();
@@ -124,7 +132,7 @@ namespace CommunityDLC.UIElements
                         }
                         if (wepMod.m_AtkAdd != 0)
                         {
-                            txt4 += BuildString(wepMod.m_AtkAdd, CustomModType.WeaponMod, ModType.StatMod, true, true) + modDisplayName.m_DisplayName + "\n";
+                            txt4 += BuildString(wepMod.m_AtkAdd, CustomModType.WeaponMod, ModType.StatMod, false, true, false) + modDisplayName.m_DisplayName + "\n";
                         }
                         if (wepMod.m_DefAdd != 0)
                         {
@@ -132,7 +140,7 @@ namespace CommunityDLC.UIElements
                         }
                         if (wepMod.m_DefFac != 0)
                         {
-                            txt4 += BuildString(wepMod.m_DefFac, CustomModType.WeaponMod, ModType.StatMod, true, true) + modDisplayName.m_DisplayName + "\n";
+                            txt4 += BuildString(wepMod.m_DefFac, CustomModType.WeaponMod, ModType.StatMod, false, true, false) + modDisplayName.m_DisplayName + "\n";
                         }
                         if (txt4 != "")
                         {

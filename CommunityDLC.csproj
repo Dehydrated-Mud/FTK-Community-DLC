@@ -4,7 +4,7 @@
     <TargetFramework>net35</TargetFramework>
     <AssemblyName>CommunityDLC</AssemblyName>
     <Description>My For The King plugin</Description>
-    <Version>0.2.6</Version>
+    <Version>0.2.8</Version>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <LangVersion>latest</LangVersion>
     <BuiltPluginDestPath></BuiltPluginDestPath>
@@ -90,6 +90,10 @@
   
   <ItemGroup>
     <ProjectReference Include="..\FTKAPI\FTKAPI.csproj" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Folder Include="Objects\Proficiencies\ProficiencyBases\" />
   </ItemGroup>
 
   <Target Name="CopyCustomContent" AfterTargets="Build" Condition="$(BuiltPluginDestPath) != ''">

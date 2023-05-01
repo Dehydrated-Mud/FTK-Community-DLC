@@ -1,7 +1,9 @@
-﻿using CommunityDLC.Objects.CharacterSkills;
+﻿using BepInEx.Logging;
+using CommunityDLC.Objects.CharacterSkills;
 using CommunityDLC.PhotonHooks;
 using FTKAPI.APIs.BattleAPI;
 using FTKAPI.Objects;
+using Logger = FTKAPI.Utils.Logger;
 using JetBrains.Annotations;
 using System;
 using System.Collections.Generic;
@@ -12,9 +14,12 @@ namespace CommunityDLC.Objects.SkillTree.Leaves
 {
     public class WandFocus : Leaf
     {
+        private float refocus = 0.3f;
         public WandFocus(LeafID leafID) : base(leafID) 
         {
+            Name = new($"+{FTKUtil.RoundToInt(refocus*100)}% Base chance to refocus when using a wand");
             Conditional = true;
+            m_Method = Method.Mods;
         }
         public override void ConditionalTally(ref CharacterStats _stats, ref CustomCharacterStatsDLC _customStats, Method defense)
         {
@@ -24,7 +29,7 @@ namespace CommunityDLC.Objects.SkillTree.Leaves
                     Weapon weapon = BattleHelpers.GetWeapon(_stats.m_CharacterOverworld);
                     if (weapon?.m_WeaponType == Weapon.WeaponType.wand)
                     {
-                        _customStats.m_RefocusChance += 0.3f;
+                        _customStats.RefocusChance += refocus;
                     }
                     break;
             }
@@ -49,10 +54,6 @@ namespace CommunityDLC.Objects.SkillTree.Leaves
             BonusAgainstRace1 = GridEditor.FTK_enemyCombat.EnemyRace.Ice;
             BonusAgainstRace1Value = 0.25f;
 
-            Fire = new WeaponMod
-            {
-                m_AtkFac = +0.25f
-            };
             Ice = new WeaponMod
             {
                 m_AtkFac = -0.15f
@@ -60,6 +61,10 @@ namespace CommunityDLC.Objects.SkillTree.Leaves
             Water = new WeaponMod
             {
                 m_AtkFac = -0.15f
+            };            
+            Fire = new WeaponMod
+            {
+                m_AtkFac = +0.25f
             };
         }
     }
@@ -73,10 +78,6 @@ namespace CommunityDLC.Objects.SkillTree.Leaves
             BonusAgainstRace2 = GridEditor.FTK_enemyCombat.EnemyRace.Lightning;
             BonusAgainstRace1Value = 0.25f;
 
-            Water = new WeaponMod
-            {
-                m_AtkFac = +0.35f
-            };
             Fire = new WeaponMod
             {
                 m_AtkFac = -0.15f
@@ -84,6 +85,10 @@ namespace CommunityDLC.Objects.SkillTree.Leaves
             Lightning = new WeaponMod
             {
                 m_AtkFac = -0.15f
+            };
+            Water = new WeaponMod
+            {
+                m_AtkFac = +0.35f
             };
         }
     }
@@ -113,32 +118,39 @@ namespace CommunityDLC.Objects.SkillTree.Leaves
             BonusAgainstRace1 = GridEditor.FTK_enemyCombat.EnemyRace.Water;
             BonusAgainstRace1Value = 0.25f;
 
-            Lightning = new WeaponMod
-            {
-                m_AtkFac = +0.25f
-            };
             Water = new WeaponMod
             {
                 m_AtkFac = -0.15f
+            };      
+            
+            Lightning = new WeaponMod
+            {
+                m_AtkFac = +0.25f
             };
         }
     }
 
     public class XPWithTome : Leaf
     {
+        float xp = 0.15f;
         public XPWithTome(LeafID leafID) : base(leafID)
         {
+            Name = new($"+{FTKUtil.RoundToInt(xp*100)}% XP when using a Tome");
             Conditional = true;
+            m_Method = Method.Mods;
         }
         public override void ConditionalTally(ref CharacterStats _stats, ref CustomCharacterStatsDLC _customStats, Method method)
         {
+            Logger.LogWarning("Entered scholar conditional tally");
             switch (method)
             {
                 case Method.Mods:
                     Weapon weapon = BattleHelpers.GetWeapon(_stats.m_CharacterOverworld);
-                    if (weapon?.m_WeaponType == Weapon.WeaponType.book)
+                    Logger.LogWarning("Scholars weapon type is: " + weapon.m_WeaponType);
+                    Logger.LogWarning("Scholars subweapon type is: " + weapon.m_WeaponSubType);
+                    if (weapon?.m_WeaponType == Weapon.WeaponType.magic)
                     {
-                        _stats.m_ModXp += 0.15f;
+                        _stats.m_ModXp += xp;
                     }
                     break;
             }
@@ -158,9 +170,12 @@ namespace CommunityDLC.Objects.SkillTree.Leaves
 
     public class ScholarStaffDef : Leaf
     {
+        int value = 2;
         public ScholarStaffDef(LeafID leafID): base(leafID)
         {
+            Name = new($"+{value} Party armor and resist when using a staff");
             Conditional = true;
+            m_Method = Method.Defense;
         }
         public override void ConditionalTally(ref CharacterStats _stats, ref CustomCharacterStatsDLC _customStats, Method method)
         {
@@ -170,8 +185,8 @@ namespace CommunityDLC.Objects.SkillTree.Leaves
                     Weapon weapon = BattleHelpers.GetWeapon(_stats.m_CharacterOverworld);
                     if (weapon?.m_WeaponType == Weapon.WeaponType.staff)
                     {
-                        _stats.m_PartyCombatArmor += 1;
-                        _stats.m_PartyCombatResist += 1;
+                        _stats.m_PartyCombatArmor += value;
+                        _stats.m_PartyCombatResist += value;
                     }
                     break;
             }

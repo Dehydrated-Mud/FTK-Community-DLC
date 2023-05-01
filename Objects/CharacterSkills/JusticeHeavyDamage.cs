@@ -11,7 +11,7 @@ namespace CommunityDLC.Objects.CharacterSkills
     {
         public JusticeHeavyDamage() 
         {
-            Trigger = TriggerType.IHeavyDamage; //Trigger when we take heavy damage
+            Trigger = TriggerType.TakeHeavyDamage; //Trigger when we take heavy damage
             Name = new CustomLocalizedString("Passive Skill: Vindication");
             Description = new CustomLocalizedString("Each time the character takes heavy damage, the character's chance to proc Justice is doubled until the end of battle.");
         }
@@ -20,16 +20,16 @@ namespace CommunityDLC.Objects.CharacterSkills
         {
             switch (trig)
             {
-                case TriggerType.IHeavyDamage:
+                case TriggerType.TakeHeavyDamage:
                     CustomCharacterStatsDLC customStats = cow.gameObject.GetComponent<CustomCharacterStatsDLC>();
                     if (customStats != null)
                     {
-                        if (customStats.m_JusticeChance == 0f)
+                        if (customStats.JusticeChance == 0f)
                         {
-                            customStats.m_JusticeChance = 1f;
+                            customStats.JusticeChance = 1f;
                             break;
                         }
-                        customStats.m_JusticeChance *= 2f;
+                        customStats.JusticeChance *= 2f;
                     }
                     // I do not think this needs to be RPCd, as all the clients will execute this in response to the heavy damage.
                     // No, I think it does. We should set up an RPC to sync customcharacterstats. Or, we could move damage reactions to the damage react location

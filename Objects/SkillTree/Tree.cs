@@ -65,25 +65,29 @@ namespace CommunityDLC.Objects.SkillTree
 
         private bool CheckEnemyEquality(MileStoneContainer other)
         {
-            if (AllEnemies)
+            if (Enemies.Count > 0) // Do we require any enemies to have been defeated?
             {
-                if (Enemies.Count > other.Enemies.Count) 
-                    return false;
-                List<FTK_enemyCombat.ID> tmpEnemies = new(other.Enemies);
-                foreach(FTK_enemyCombat.ID enemy in Enemies) 
+                if (AllEnemies)
                 {
-                    if (tmpEnemies.Contains(enemy))
-                    {
-                        tmpEnemies.Remove(enemy);
-                    }
-                    else
-                    {
+                    if (Enemies.Count > other.Enemies.Count)
                         return false;
+                    List<FTK_enemyCombat.ID> tmpEnemies = new(other.Enemies);
+                    foreach (FTK_enemyCombat.ID enemy in Enemies)
+                    {
+                        if (tmpEnemies.Contains(enemy))
+                        {
+                            tmpEnemies.Remove(enemy);
+                        }
+                        else
+                        {
+                            return false;
+                        }
                     }
+                    return true;
                 }
-                return true;
+                return Enemies.Intersect(other.Enemies).Any();
             }
-            return Enemies.Intersect(other.Enemies).Any();
+            return true; // If we do not specify an enemy requirement, then the milestone passes the enemy requirement
         }
         public bool CheckSolo(MileStoneContainer other)
         {
