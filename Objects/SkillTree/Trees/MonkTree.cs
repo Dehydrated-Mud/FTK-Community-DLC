@@ -92,12 +92,11 @@ namespace CommunityDLC.Objects.SkillTree.Trees
                 Title = new CustomLocalizedString(oak)
             };
 
-
             Branch Branch1 = new Branch(new List<LeafButton>() { OffA1, OffB1 })
             {
                 MileStone = new LevelMilestone(4)
             };
-            Branch Branch2 = new Branch(new List<LeafButton>() {Master1, CombatMeditate })
+            Branch Branch2 = new Branch(new List<LeafButton>() { Master1, CombatMeditate })
             {
                 MileStone = new LevelMilestone(5)
             };
@@ -137,6 +136,5 @@ namespace CommunityDLC.Objects.SkillTree.Trees
             branches.Reverse();
             Branches = branches;
         }
-
     }
 }

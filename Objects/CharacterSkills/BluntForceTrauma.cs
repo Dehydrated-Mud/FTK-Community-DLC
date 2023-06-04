@@ -42,8 +42,8 @@ namespace CommunityDLC.Objects.CharacterSkills
                     {
                         FTK_proficiencyTable.ID[] prof = { FTK_proficiencyTable.ID.bluntStun };
                         victim.AddProfToDummy(prof, true, true);
-                        proc = false;
                     }
+                    proc = false;
                     break;
             }
         }

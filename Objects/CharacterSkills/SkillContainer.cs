@@ -38,6 +38,16 @@ namespace CommunityDLC.Objects.CharacterSkills
         public FTKAPI_CharacterSkill bluntForceTrauma;
         public FTKAPI_CharacterSkill rebuttal;
         public FTKAPI_CharacterSkill alwaysPrepared;
+        public FTKAPI_CharacterSkill autoTaunt;
+        public FTKAPI_CharacterSkill rumsTheWord;
+        public FTKAPI_CharacterSkill drinkThat;
+        public FTKAPI_CharacterSkill eatThat;
+        public FTKAPI_CharacterSkill smokedMeat;
+        public FTKAPI_CharacterSkill livlihood;
+        public FTKAPI_CharacterSkill calloftheHunter;
+        public FTKAPI_CharacterSkill calledRush;
+        public FTKAPI_CharacterSkill calledShot;
+        public FTKAPI_CharacterSkill findNook;
         public SkillContainer() 
         {
             Reset();
@@ -61,6 +71,16 @@ namespace CommunityDLC.Objects.CharacterSkills
             bluntForceTrauma = new BluntForceTrauma();
             rebuttal = new BlockReflect();
             alwaysPrepared = new AlwaysPrepared();
+            autoTaunt = new AutoTaunt();
+            rumsTheWord = new RumsTheWord();
+            drinkThat = new DrinkThat();
+            eatThat = new EatThat();
+            smokedMeat= new SmokedMeat();
+            calloftheHunter = new CallOfTheHunter();
+            livlihood = new Livelihood();
+            calledRush = new CalledRush();
+            calledShot = new CalledShot();
+            findNook= new FindNook();
         }
         public void SyncDivine(bool _proc)
         {

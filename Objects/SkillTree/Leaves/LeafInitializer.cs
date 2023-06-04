@@ -103,6 +103,26 @@ namespace CommunityDLC.Objects.SkillTree.Leaves
             dict[LeafID.BlackSmithSteady] = AddMod(new IncreasedSteady(LeafID.BlackSmithSteady));
             dict[LeafID.BlackSmithCrush] = AddMod(new CrushingBlow(LeafID.BlackSmithCrush));
             dict[LeafID.BlackSmithLeatherBack] = AddMod(new LeatherBack(LeafID.BlackSmithLeatherBack));
+
+            dict[LeafID.HoboFindSpirit] = AddMod(new FindDrink(LeafID.HoboFindSpirit));
+            dict[LeafID.HoboSnickerDoodle] = AddMod(new FindFood(LeafID.HoboSnickerDoodle));
+            dict[LeafID.HoboRumsTheWord] = AddMod(new HoboRum(LeafID.HoboRumsTheWord));
+            dict[LeafID.HoboFindShelter] = AddMod(new HoboNook(LeafID.HoboFindShelter));
+            dict[LeafID.HoboFouldStench] = AddMod(new WhatsThatSmell(LeafID.HoboFouldStench));
+
+            dict[LeafID.HunterOffA1] = AddMod(new HunterOffA(LeafID.HunterOffA1));
+            dict[LeafID.HunterOffA2] = AddMod(new HunterOffA(LeafID.HunterOffA2));
+            dict[LeafID.HunterOffA3] = AddMod(new HunterOffA(LeafID.HunterOffA3));
+            dict[LeafID.HunterOffB1] = AddMod(new HunterOffB(LeafID.HunterOffB1));
+            dict[LeafID.HunterOffB2] = AddMod(new HunterOffB(LeafID.HunterOffB2));
+            dict[LeafID.HunterOffB3] = AddMod(new HunterOffB(LeafID.HunterOffB3));
+            dict[LeafID.HunterCalledRush] = AddMod(new ChainShot(LeafID.HunterCalledRush));
+            dict[LeafID.HunterCalledShot] = AddMod(new CalledShotChance(LeafID.HunterCalledShot));
+            //dict[LeafID.HunterCalledShot2] = AddMod(new CalledShotChance(LeafID.HunterCalledShot2));
+            dict[LeafID.HunterBonusGold] = AddMod(new GoldForBeasts(LeafID.HunterBonusGold));
+            dict[LeafID.HunterBonusXP] = AddMod(new XPForBeasts(LeafID.HunterBonusXP));
+            dict[LeafID.HunterGun] = AddMod(new GunDMG(LeafID.HunterGun, 0.1f));
+            dict[LeafID.HunterBow] = AddMod(new BowDMG(LeafID.HunterBow, 0.1f));
             return dict;
         }
 

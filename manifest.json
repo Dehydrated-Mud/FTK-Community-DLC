@@ -2,7 +2,7 @@
   "name": "MoreBugs",
   "description": "A mod that makes FTK crash more often, free of charge! (this is a test branch, don't download unless you know what you are doing.)",
   "website_url": "https://discord.gg/tZRjxSDnaG",
-  "version_number": "0.2.8",
+  "version_number": "0.2.10",
   "dependencies": [
     "BepInEx-BepInExPack_ForTheKing-5.4.19",
     "Amadare-HookGenPatcher-1.2.1"

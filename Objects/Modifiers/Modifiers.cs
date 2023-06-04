@@ -26,8 +26,11 @@ namespace CommunityDLC.Objects.Modifiers
         private float m_JusticeChance = 0;
         private float m_RefocusChance = 0;
         private float m_SteadfastChance = 0;
-
+        private float m_CalledShotChance = 0;
         private int m_DisciplineFocus = 0;
+
+        [CustomModDisplayNameDLC(" Chance to trigger Called Shot", "", ModType.StatMod, CustomModType.None, _percent: true)]
+        public float CalledShotChance { get => m_CalledShotChance; set => m_CalledShotChance = value; }
 
         [CustomModDisplayNameDLC(" Chance to trigger Justice", "", ModType.StatMod, CustomModType.None, _percent: true)]
         public float JusticeChance { get => m_JusticeChance; set => m_JusticeChance = value; }

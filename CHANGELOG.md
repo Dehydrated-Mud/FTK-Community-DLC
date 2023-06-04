@@ -21,3 +21,8 @@ init
 ### v 0.2.8
 - Added Treasure Hunter skill tree
 - Added Blacksmith skill tree
+### v 0.2.9
+- Fixed bug where mini encounters would freeze the game
+### v 0.2.10
+- Added Hobo skill tree
+- Added Hunter skill tree

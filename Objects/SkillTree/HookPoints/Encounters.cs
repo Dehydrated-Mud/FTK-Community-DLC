@@ -28,7 +28,10 @@ namespace CommunityDLC.Objects.SkillTree.HookPoints
             bool wasSolo = _this.m_AllCombtatants.Length == 1;
             //Get IDs of all enemies in combat
             List<FTK_enemyCombat.ID> enemies = _this.m_EnemyStatuses.Values.Select(e => (FTK_enemyCombat.ID)Enum.Parse(typeof(FTK_enemyCombat.ID), e.m_EnemyType, ignoreCase: true)).ToList();
-            Logger.LogWarning(enemies[0]);
+            if (enemies.Count > 0)
+            {
+                Logger.LogWarning(enemies[0]);
+            }
             MileStoneContainer milestone = new MileStoneContainer
             {
                 Solo = wasSolo,

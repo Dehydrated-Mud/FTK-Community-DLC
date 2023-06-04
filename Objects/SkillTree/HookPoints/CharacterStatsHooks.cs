@@ -98,6 +98,7 @@ namespace CommunityDLC.Objects.SkillTree
                         customStats.RefocusChance += entry3.RefocusChance;
                         customStats.DisciplineFocus += entry3.DisciplineFocus;
                         customStats.SteadfastChance += entry3.SteadfastChance;
+                        customStats.CalledShotChance += entry3.CalledShotChance;
                         
                         customStats.DamageModifiers[WeaponType.axe].Add(entry3.Axe);
                         customStats.DamageModifiers[WeaponType.bladed].Add(entry3.Bladed);

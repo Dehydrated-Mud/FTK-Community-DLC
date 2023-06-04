@@ -27,7 +27,7 @@ namespace CommunityDLC.Objects.CharacterSkills
             Description = new CustomLocalizedString("If this player has used focus at some point in their turn in the overworld, then at the end of their turn ally's within 2 hexes will receive healing. In combat, the party is healed if this player uses focus on an attack and that attack is not dodged.");
         }
 
-        public override void Skill(CharacterOverworld _cow, Query query)
+        /*public override void Skill(CharacterOverworld _cow, Query query)
         {
             switch(query)
             {
@@ -38,7 +38,7 @@ namespace CommunityDLC.Objects.CharacterSkills
                     }
                     break;
             }
-        }
+        }*/
         public override void Skill(CharacterOverworld _player, TriggerType _trig, AttackAttempt _atk)
         {
             //Logger.LogWarning("Attempting combat focus heal");

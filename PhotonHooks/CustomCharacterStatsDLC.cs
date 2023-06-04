@@ -29,6 +29,7 @@ namespace CommunityDLC.PhotonHooks
         public float JusticeChance { get; set; } = 0;
         public float RefocusChance { get; set; } = 0;
         public float SteadfastChance { get; set; } = 0;
+        public float CalledShotChance { get; set; } = 0;
         public int DisciplineFocus { get; set; } = 0;
         public int ImperviousArmor { get; set; } = 0;
         public int ImperviousResist { get; set; } = 0;
@@ -74,6 +75,7 @@ namespace CommunityDLC.PhotonHooks
             RefocusChance = 0f;
             SteadfastChance = 0f;
             DisciplineFocus = 0;
+            CalledShotChance = 0;
         }
         public void ClearDefense()
         {

@@ -65,8 +65,13 @@ namespace CommunityDLC.Objects.SkillTree
 
         private bool CheckEnemyEquality(MileStoneContainer other)
         {
-            if (Enemies.Count > 0) // Do we require any enemies to have been defeated?
+            if (Enemies != null && Enemies.Count > 0) // Do we require any enemies to have been defeated?
             {
+                // If we require certain enemies to be defeated and the other milestone has none, return false
+                if (other.Enemies == null || !other.Enemies.Any()) 
+                { 
+                    return false; 
+                }
                 if (AllEnemies)
                 {
                     if (Enemies.Count > other.Enemies.Count)

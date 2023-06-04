@@ -18,6 +18,8 @@ namespace CommunityDLC.Objects
         public static List<string> ice = new List<string> { "ice", "frost", "frozen", "glacier" };
         public static List<string> water = new List<string> { "water" };
         public static List<string> lightning = new List<string> { "lightning", "thunder", "storm", "shock" };
+
+        public static List<FTK_enemyCombat.ID> bigGame = new List<FTK_enemyCombat.ID> { FTK_enemyCombat.ID.owlbearA, FTK_enemyCombat.ID.bisonGladiator, FTK_enemyCombat.ID.bisonA, FTK_enemyCombat.ID.bisonB, FTK_enemyCombat.ID.rocA, FTK_enemyCombat.ID.owlbearB, FTK_enemyCombat.ID.hawkA, FTK_enemyCombat.ID.hawkB, FTK_enemyCombat.ID.krakenHead, FTK_enemyCombat.ID.krakenTentacle, FTK_enemyCombat.ID.krakenTentacleMirror, FTK_enemyCombat.ID.yetiA, FTK_enemyCombat.ID.rocB, FTK_enemyCombat.ID.bearA, FTK_enemyCombat.ID.bearB, FTK_enemyCombat.ID.yetiB, FTK_enemyCombat.ID.bearC, FTK_enemyCombat.ID.pantherA, FTK_enemyCombat.ID.jaguarA, FTK_enemyCombat.ID.jaguarB, FTK_enemyCombat.ID.pantherB, FTK_enemyCombat.ID.rocJungleA };
         /// <summary>
         /// Returns the amount to heal a character by based a percentage of their health
         /// </summary>
@@ -94,6 +96,22 @@ namespace CommunityDLC.Objects
             {
                 weapon.m_WeaponSubType = Weapon.WeaponSubType.water;
             }
+        }
+        /// <summary>
+        /// Get a weighted item drop from an explicitly defined list of items
+        /// </summary>
+        /// <param name="_items"></param>
+        /// <returns></returns>
+        public static FTK_itembase.ID GetWeightedDropItemDirect(List<FTK_itembase.ID> _items)
+        {
+            List<FTK_itembase> itemsActual = new();
+            foreach(FTK_itembase.ID item in _items)
+            {
+                itemsActual.Add(FTK_itemsDB.GetDB().GetEntry(item));
+            }
+            object[] args = GameLogic.BuildItemStringWeightArray(itemsActual);
+            string id = FTKUtil.RandomStringWeighted(null, args).ToString();
+            return FTK_itembase.GetEnum(id);
         }
     }
 }
