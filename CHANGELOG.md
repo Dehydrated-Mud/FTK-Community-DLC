@@ -26,3 +26,5 @@ init
 ### v 0.2.10
 - Added Hobo skill tree
 - Added Hunter skill tree
+### v 0.2.11
+- Added Gladiator skill tree

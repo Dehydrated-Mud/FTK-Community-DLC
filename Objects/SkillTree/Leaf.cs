@@ -141,6 +141,18 @@ namespace CommunityDLC.Objects.SkillTree
             HunterGun,
             HunterBonusXP,
             HunterBonusGold,
+            GladiatorLifesteal,
+            GladiatorDirtyTactics,
+            GladiatorBloodLust,
+            GladiatorLifeDrain,
+            GladiatorBerserk,
+            GladiatorCritical,
+            GladiatorOffA1,
+            GladiatorOffA2,
+            GladiatorOffA3,
+            GladiatorOffB1,
+            GladiatorOffB2,
+            GladiatorOffB3,
             Test,
             Test2
         }

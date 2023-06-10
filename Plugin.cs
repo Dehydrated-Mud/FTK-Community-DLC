@@ -111,7 +111,7 @@ namespace CommunityDLC
                     SkillContainer.Instance.Reset();
                     FTKAPI_CharacterSkill focusHealer = SkillContainer.Instance.focusHealer;
                     FTKAPI_CharacterSkill divine = SkillContainer.Instance.divine;
-                    List<FTKAPI_CharacterSkill> paladinSkills = new List<FTKAPI_CharacterSkill>() { focusHealer, divine, SkillContainer.Instance.autoTaunt };
+                    List<FTKAPI_CharacterSkill> paladinSkills = new List<FTKAPI_CharacterSkill>() { focusHealer, divine, SkillContainer.Instance.berserker };
                     CustomCharacterSkills paladinCharacterSkills = new CustomCharacterSkills()
                     {
                         Skills = paladinSkills

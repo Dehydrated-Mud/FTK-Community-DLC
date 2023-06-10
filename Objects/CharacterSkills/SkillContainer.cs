@@ -48,6 +48,10 @@ namespace CommunityDLC.Objects.CharacterSkills
         public FTKAPI_CharacterSkill calledRush;
         public FTKAPI_CharacterSkill calledShot;
         public FTKAPI_CharacterSkill findNook;
+        public FTKAPI_CharacterSkill thrillKill;
+        public FTKAPI_CharacterSkill dirtyTactics;
+        public FTKAPI_CharacterSkill berserker;
+        public FTKAPI_CharacterSkill lifeDrain;
         public SkillContainer() 
         {
             Reset();
@@ -80,7 +84,11 @@ namespace CommunityDLC.Objects.CharacterSkills
             livlihood = new Livelihood();
             calledRush = new CalledRush();
             calledShot = new CalledShot();
-            findNook= new FindNook();
+            findNook = new FindNook();
+            thrillKill = new ThrillKill();
+            dirtyTactics = new DirtyTactics();
+            berserker = new Berserker();
+            lifeDrain = new LifeDrain();
         }
         public void SyncDivine(bool _proc)
         {

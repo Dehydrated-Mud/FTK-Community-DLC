@@ -25,7 +25,8 @@ namespace CommunityDLC.PhotonHooks
             DefendAdd
         }
 
-        // TODO: "Convert" all of these to BattleAPI stats
+        // TODO: "Convert" all of these to BattleAPI stats, should get rid of Steadfast II, CalledShot II etc
+        public float LifestealFac { get; set; } = 0;
         public float JusticeChance { get; set; } = 0;
         public float RefocusChance { get; set; } = 0;
         public float SteadfastChance { get; set; } = 0;
@@ -76,6 +77,7 @@ namespace CommunityDLC.PhotonHooks
             SteadfastChance = 0f;
             DisciplineFocus = 0;
             CalledShotChance = 0;
+            LifestealFac = 0;
         }
         public void ClearDefense()
         {
@@ -91,6 +93,7 @@ namespace CommunityDLC.PhotonHooks
             {
                 BattleAPI.Instance.SetAStat(m_CharacterOverworld.GetCurrentDummy(), ImperviousArmor, SetFloats.ImperviousArmor, CombatValueOperators.Add);
                 BattleAPI.Instance.SetAStat(m_CharacterOverworld.GetCurrentDummy(), ImperviousResist, SetFloats.ImperviousResist, CombatValueOperators.Add);
+                BattleAPI.Instance.SetAStat(m_CharacterOverworld.GetCombatDummy(), LifestealFac, SetFloats.LifestealFac, CombatValueOperators.Add);
             }
             else
             {

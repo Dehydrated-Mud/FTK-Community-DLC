@@ -29,6 +29,9 @@ namespace CommunityDLC.Objects.Modifiers
         private float m_CalledShotChance = 0;
         private int m_DisciplineFocus = 0;
 
+        [CustomModDisplayNameDLC(" Lifesteal", "", ModType.StatMod, CustomModType.None, _percent: true)]
+        public float LifeStealFac { get; set; } = 0f;
+
         [CustomModDisplayNameDLC(" Chance to trigger Called Shot", "", ModType.StatMod, CustomModType.None, _percent: true)]
         public float CalledShotChance { get => m_CalledShotChance; set => m_CalledShotChance = value; }
 

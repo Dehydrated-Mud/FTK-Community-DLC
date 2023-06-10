@@ -66,6 +66,9 @@ namespace CommunityDLC.Objects.SkillTree
                     case FTK_playerGameStart.ID.hunter:
                         m_modTrees[playerID] = new HunterTree() { Stats = characterStats };
                         break;
+                    case FTK_playerGameStart.ID.gladiator:
+                        m_modTrees[playerID] = new GladiatorTree() { Stats = characterStats };
+                        break;
                     default:
                         m_modTrees[playerID] = new TestTree() { Stats = characterStats };
                         break;

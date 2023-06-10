@@ -22,7 +22,9 @@ namespace CommunityDLC.Objects.CharacterSkills
             switch (trig)
             {
                 case TriggerType.CalledShot:
-                    cow.GetCurrentDummy().AddProfToDummy(new FTK_proficiencyTable.ID[] { FTK_proficiencyTable.ID.musicRush }, true, true);
+                    cow.m_CurrentDummy.RPCAllSelf("AddProfToDummy", 
+                        new object[3] { new FTK_proficiencyTable.ID[] { FTK_proficiencyTable.ID.musicRush }, true, true }
+                        );
                     break;
             }
         }

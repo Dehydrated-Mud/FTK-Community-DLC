@@ -123,6 +123,19 @@ namespace CommunityDLC.Objects.SkillTree.Leaves
             dict[LeafID.HunterBonusXP] = AddMod(new XPForBeasts(LeafID.HunterBonusXP));
             dict[LeafID.HunterGun] = AddMod(new GunDMG(LeafID.HunterGun, 0.1f));
             dict[LeafID.HunterBow] = AddMod(new BowDMG(LeafID.HunterBow, 0.1f));
+
+            dict[LeafID.GladiatorOffA1] = AddMod(new GenericVitality(LeafID.GladiatorOffA1, 0.02f));
+            dict[LeafID.GladiatorOffA2] = AddMod(new GenericVitality(LeafID.GladiatorOffA2, 0.02f));
+            dict[LeafID.GladiatorOffA3] = AddMod(new GenericVitality(LeafID.GladiatorOffA3, 0.02f));
+            dict[LeafID.GladiatorOffB1] = AddMod(new GenericTalent(LeafID.GladiatorOffB1, 0.03f));
+            dict[LeafID.GladiatorOffB2] = AddMod(new GenericTalent(LeafID.GladiatorOffB2, 0.03f));
+            dict[LeafID.GladiatorOffB3] = AddMod(new GenericTalent(LeafID.GladiatorOffB3, 0.03f));
+            dict[LeafID.GladiatorLifesteal] = AddMod(new GladiatorLifesteal(LeafID.GladiatorLifesteal));
+            dict[LeafID.GladiatorBerserk] = AddMod(new GladiatorBerserk(LeafID.GladiatorBerserk));
+            dict[LeafID.GladiatorLifeDrain] = AddMod(new GladiatorLifeDrain(LeafID.GladiatorLifeDrain));
+            dict[LeafID.GladiatorCritical] = AddMod(new GladiatorCrit(LeafID.GladiatorCritical));
+            dict[LeafID.GladiatorBloodLust] = AddMod(new GladiatorLust(LeafID.GladiatorBloodLust));
+            dict[LeafID.GladiatorDirtyTactics] = AddMod(new GladiatorDirty(LeafID.GladiatorDirtyTactics));
             return dict;
         }
 
