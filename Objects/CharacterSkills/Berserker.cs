@@ -14,7 +14,7 @@ namespace CommunityDLC.Objects.CharacterSkills
         Dictionary<FTKPlayerID, bool> m_Proc = new();
         public Berserker()
         {
-            Trigger = TriggerType.TakeAnyDamage;
+            Trigger = TriggerType.TakeHeavyDamage;
             Name = new("Passive Skill: Berserker");
             Description = new("After taking heavy damage, the hero flies into a rage, significantly boosting damage.");
             SkillInfo = (FTK_characterSkill.ID)SkillManager.AddSkill(new CustomSkill(FTK_characterSkill.ID.Glory)
@@ -46,7 +46,7 @@ namespace CommunityDLC.Objects.CharacterSkills
         {
             switch(trig)
             {
-                case TriggerType.TakeAnyDamage:
+                case TriggerType.TakeHeavyDamage:
                     m_Proc[cow.m_FTKPlayerID] = true; //Sync this?
                     break;
             }
