@@ -153,6 +153,17 @@ namespace CommunityDLC.Objects.SkillTree
             GladiatorOffB1,
             GladiatorOffB2,
             GladiatorOffB3,
+            PaladinOffA1,
+            PaladinOffA2,
+            PaladinOffA3,
+            PaladinOffB1,
+            PaladinOffB2,
+            PaladinOffB3,
+            PaladinInspire,
+            PaladinEncourage,
+            PaladinThreshold,
+            PaladinSelf,
+            PaladinHeal,
             Test,
             Test2
         }

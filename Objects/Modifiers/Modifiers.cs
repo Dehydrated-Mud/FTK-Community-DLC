@@ -46,6 +46,14 @@ namespace CommunityDLC.Objects.Modifiers
         [CustomModDisplayNameDLC(" Threshold focus to trigger Discipline", "", ModType.StatMod, CustomModType.None, _percent: false)]
         public int DisciplineFocus { get => m_DisciplineFocus; set => m_DisciplineFocus = value; }
 
+        [CustomModDisplayNameDLC(" Threshold health to trigger Divine Intervention", "", ModType.StatMod, CustomModType.None, _percent: true)]
+        public float DIThreshold { get; set; } = 0f;
+
+        [CustomModDisplayNameDLC(" Focus Healing", "", ModType.StatMod, CustomModType.None, _percent: true)]
+        public float FocusHeal { get; set; } = 0f;
+
+        public bool DISelf { get; set; } = false;
+
         [CustomModDisplayNameDLC("Impervious Armor", "", ModType.StatMod, CustomModType.None, _percent: false)]
         public int ImperviousArmor { get; set; } = 0;
 

@@ -136,6 +136,19 @@ namespace CommunityDLC.Objects.SkillTree.Leaves
             dict[LeafID.GladiatorCritical] = AddMod(new GladiatorCrit(LeafID.GladiatorCritical));
             dict[LeafID.GladiatorBloodLust] = AddMod(new GladiatorLust(LeafID.GladiatorBloodLust));
             dict[LeafID.GladiatorDirtyTactics] = AddMod(new GladiatorDirty(LeafID.GladiatorDirtyTactics));
+
+            dict[LeafID.PaladinOffA1] = AddMod(new GenericAwareness(LeafID.PaladinOffA1, 0.03f));
+            dict[LeafID.PaladinOffA2] = AddMod(new GenericAwareness(LeafID.PaladinOffA2, 0.03f));
+            dict[LeafID.PaladinOffA3] = AddMod(new GenericAwareness(LeafID.PaladinOffA3, 0.03f));
+            dict[LeafID.PaladinOffB1] = AddMod(new GenericTalent(LeafID.PaladinOffB1, 0.03f));
+            dict[LeafID.PaladinOffB2] = AddMod(new GenericTalent(LeafID.PaladinOffB2, 0.03f));
+            dict[LeafID.PaladinOffB3] = AddMod(new GenericTalent(LeafID.PaladinOffB3, 0.03f));
+            dict[LeafID.PaladinInspire] = AddMod(new PaladinInspire(LeafID.PaladinInspire));
+            dict[LeafID.PaladinEncourage] = AddMod(new PaladinEncourage(LeafID.PaladinEncourage));
+            dict[LeafID.PaladinHeal] = AddMod(new PaladinHeal(LeafID.PaladinHeal));
+            dict[LeafID.PaladinThreshold] = AddMod(new PaladinThreshold(LeafID.PaladinThreshold));
+            dict[LeafID.PaladinSelf] = AddMod(new PaladinSelf(LeafID.PaladinSelf));
+
             return dict;
         }
 

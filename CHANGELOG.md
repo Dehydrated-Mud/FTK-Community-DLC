@@ -28,3 +28,5 @@ init
 - Added Hunter skill tree
 ### v 0.2.11
 - Added Gladiator skill tree
+### v 0.2.12
+- Added Paladin skill tree

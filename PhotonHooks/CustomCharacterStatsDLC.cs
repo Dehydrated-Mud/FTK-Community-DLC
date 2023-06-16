@@ -35,7 +35,10 @@ namespace CommunityDLC.PhotonHooks
         public int ImperviousArmor { get; set; } = 0;
         public int ImperviousResist { get; set; } = 0;
         public float EvasionMod { get; set; } = 0; // I don't think this is necessary as the original characterstats has an evasionmod that we can add to directly.
+        public bool DISelf { get; set; } = false;
 
+        public float DIThreshold { get; set; } = 0.5f;
+        public float FocusHeal = 0.08f;
         public bool GuaranteeCrit { get; set; }
         public Dictionary<WeaponType, WeaponMod> DamageModifiers { get; set; } = new Dictionary<WeaponType, WeaponMod>();
         public Dictionary<WeaponSubType, WeaponMod> SubDamageModifiers { get; set; } = new Dictionary<WeaponSubType, WeaponMod>();
@@ -78,6 +81,9 @@ namespace CommunityDLC.PhotonHooks
             DisciplineFocus = 0;
             CalledShotChance = 0;
             LifestealFac = 0;
+            DIThreshold = 0.5f;
+            DISelf = false;
+            FocusHeal = 0.08f;
         }
         public void ClearDefense()
         {

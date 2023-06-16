@@ -16,7 +16,7 @@ namespace CommunityDLC.Objects.CharacterSkills
         };
         public AutoTaunt()
         {
-            Name = new("Skill: What's that smell?");
+            Name = new("Skill: First into the Breach");
             Description = new("At the beginning of combat the character is given a chance to taunt.");
         }
 

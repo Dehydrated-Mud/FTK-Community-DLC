@@ -4,7 +4,7 @@
     <TargetFramework>net35</TargetFramework>
     <AssemblyName>CommunityDLC</AssemblyName>
     <Description>My For The King plugin</Description>
-    <Version>0.2.11</Version>
+    <Version>0.2.12</Version>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <LangVersion>latest</LangVersion>
     <BuiltPluginDestPath></BuiltPluginDestPath>

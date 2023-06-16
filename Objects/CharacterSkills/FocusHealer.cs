@@ -1,4 +1,5 @@
-﻿using FTKAPI.APIs.BattleAPI;
+﻿using CommunityDLC.PhotonHooks;
+using FTKAPI.APIs.BattleAPI;
 using FTKAPI.Objects;
 using GridEditor;
 using HarmonyLib;
@@ -47,12 +48,14 @@ namespace CommunityDLC.Objects.CharacterSkills
                 case TriggerType.AnyLandedAttack:
                     if (_atk.m_AttackFocused > 0)
                     {
+                        CustomCharacterStatsDLC stats = _player.gameObject.GetComponent<CustomCharacterStatsDLC>();
+                        float percent = stats.FocusHeal;
                         int _newHealth = 0;
                         List<CharacterDummy> CombatPlayerMembers = EncounterSession.Instance.GetOtherCombatPlayerMembers(_player.m_CurrentDummy);
                         CombatPlayerMembers = CombatPlayerMembers.AddItem(_player.m_CurrentDummy).ToList();
                         foreach(CharacterDummy characterDummy in CombatPlayerMembers) 
                         {
-                            int healAmount = DLCUtils.HealByPercentage(_player.m_CurrentDummy, 0.08f);
+                            int healAmount = DLCUtils.HealByPercentage(_player.m_CurrentDummy, percent);
                             _newHealth = _player.m_CurrentDummy.GetCurrentHealth() + healAmount;
                             characterDummy.SpawnHudText("Focus Healing +" + healAmount + "HP", string.Empty);
                             characterDummy.m_CharacterOverworld.m_CharacterStats.SetSpecificHealth(_newHealth, true);
@@ -88,13 +91,15 @@ namespace CommunityDLC.Objects.CharacterSkills
                     {
                         Logger.LogWarning("Met Criteria");
                         Logger.LogWarning(FTKHub.Instance.m_CharacterOverworlds.Count);
+                        CustomCharacterStatsDLC stats = _player.gameObject.GetComponent<CustomCharacterStatsDLC>();
+                        float percent = stats.FocusHeal + 0.05f;
                         foreach (CharacterOverworld characterOverworld in FTKHub.Instance.m_CharacterOverworlds)
                         {
                             float magnitude = (_player.transform.position - characterOverworld.transform.position).magnitude;
                             //Logger.LogWarning("Distance to target is: " + magnitude);
                             if (magnitude <= 2f * _conv)
                             {
-                                int healAmount = DLCUtils.HealByPercentage(characterOverworld.m_CurrentDummy, 0.15f);
+                                int healAmount = DLCUtils.HealByPercentage(characterOverworld.m_CurrentDummy, percent);
                                 int _newHealth = characterOverworld.m_CurrentDummy.GetCurrentHealth() + healAmount;
                                 if (healAmount > 0)
                                 {

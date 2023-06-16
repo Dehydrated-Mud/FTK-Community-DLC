@@ -43,6 +43,7 @@ namespace CommunityDLC.Objects.SkillTree
         {
             if (!m_modTrees.ContainsKey(playerID))
             {
+                FTK_playerGameStart.ID paladin = (FTK_playerGameStart.ID)ClassManager.Instance.enums["Paladin"];
                 switch (characterID)
                 {
                     case FTK_playerGameStart.ID.woodcutter:
@@ -70,7 +71,14 @@ namespace CommunityDLC.Objects.SkillTree
                         m_modTrees[playerID] = new GladiatorTree() { Stats = characterStats };
                         break;
                     default:
-                        m_modTrees[playerID] = new TestTree() { Stats = characterStats };
+                        if (characterID == paladin)
+                        {
+                            m_modTrees[playerID] = new PaladinTree() { Stats = characterStats };
+                        }
+                        else
+                        {
+                            m_modTrees[playerID] = new TestTree() { Stats = characterStats };
+                        }
                         break;
                 }
                 m_modTrees[playerID].InitializeData();

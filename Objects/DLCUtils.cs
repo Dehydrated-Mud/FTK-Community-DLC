@@ -113,5 +113,10 @@ namespace CommunityDLC.Objects
             string id = FTKUtil.RandomStringWeighted(null, args).ToString();
             return FTK_itembase.GetEnum(id);
         }
+
+        public static float GetDummyHealthPercent(CharacterDummy _dummy)
+        {
+            return (float)_dummy.GetCurrentHealth() / (float)_dummy.m_CharacterOverworld.m_CharacterStats.MaxHealth;
+        }
     }
 }
