@@ -70,6 +70,9 @@ namespace CommunityDLC.Objects.SkillTree
                     case FTK_playerGameStart.ID.gladiator:
                         m_modTrees[playerID] = new GladiatorTree() { Stats = characterStats };
                         break;
+                    case FTK_playerGameStart.ID.minstrel:
+                        m_modTrees[playerID] = new MinstrelTree() { Stats = characterStats };
+                        break;
                     default:
                         if (characterID == paladin)
                         {

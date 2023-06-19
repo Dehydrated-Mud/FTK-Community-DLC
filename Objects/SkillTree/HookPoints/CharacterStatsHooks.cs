@@ -103,6 +103,10 @@ namespace CommunityDLC.Objects.SkillTree
                         customStats.DIThreshold += entry3.DIThreshold;
                         customStats.DISelf |= entry3.DISelf;
                         customStats.FocusHeal += entry3.FocusHeal;
+                        customStats.InspireXP += entry3.InspireXP;
+                        customStats.InspireChance += entry3.InspireChance;
+                        customStats.EncourageChance += entry3.EncourageChance;
+                        customStats.DistractChance += entry3.DistractChance;
                         
                         customStats.DamageModifiers[WeaponType.axe].Add(entry3.Axe);
                         customStats.DamageModifiers[WeaponType.bladed].Add(entry3.Bladed);

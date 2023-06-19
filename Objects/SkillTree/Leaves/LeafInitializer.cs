@@ -149,6 +149,18 @@ namespace CommunityDLC.Objects.SkillTree.Leaves
             dict[LeafID.PaladinThreshold] = AddMod(new PaladinThreshold(LeafID.PaladinThreshold));
             dict[LeafID.PaladinSelf] = AddMod(new PaladinSelf(LeafID.PaladinSelf));
 
+            dict[LeafID.MinstrelInn] = AddMod(new MinstrelInn(LeafID.MinstrelInn));
+            dict[LeafID.MinstrelDistract] = FTK_characterModifier.ID.trinketDistraction;
+            dict[LeafID.MinstrelEncourage] = AddMod(new MinstrelEncourage(LeafID.MinstrelEncourage));
+            dict[LeafID.MinstrelInspireChance] = AddMod(new MinstrelInspireChance(LeafID.MinstrelInspireChance));
+            dict[LeafID.MinstrelInspireXP] = AddMod(new MinstrelInspireXP(LeafID.MinstrelInspireXP));
+            dict[LeafID.MinstrelInspirational] = AddMod(new MinstrelInspirational(LeafID.MinstrelInspirational));
+            dict[LeafID.MinstrelOffA1] = AddMod(new MinstrelOffA(LeafID.MinstrelOffA1));
+            dict[LeafID.MinstrelOffA2] = AddMod(new MinstrelOffA(LeafID.MinstrelOffA2));
+            dict[LeafID.MinstrelOffA3] = AddMod(new MinstrelOffA(LeafID.MinstrelOffA3));
+            dict[LeafID.MinstrelOffB1] = AddMod(new MinstrelOffB(LeafID.MinstrelOffB1));
+            dict[LeafID.MinstrelOffB2] = AddMod(new MinstrelOffB(LeafID.MinstrelOffB2));
+            dict[LeafID.MinstrelOffB3] = AddMod(new MinstrelOffB(LeafID.MinstrelOffB3));
             return dict;
         }
 

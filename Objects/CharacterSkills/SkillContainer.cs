@@ -52,6 +52,8 @@ namespace CommunityDLC.Objects.CharacterSkills
         public FTKAPI_CharacterSkill dirtyTactics;
         public FTKAPI_CharacterSkill berserker;
         public FTKAPI_CharacterSkill lifeDrain;
+        public FTKAPI_CharacterSkill freeInn;
+        public FTKAPI_CharacterSkill inspirational;
         public SkillContainer() 
         {
             Reset();
@@ -89,6 +91,8 @@ namespace CommunityDLC.Objects.CharacterSkills
             dirtyTactics = new DirtyTactics();
             berserker = new Berserker();
             lifeDrain = new LifeDrain();
+            freeInn = new FreeInn();
+            inspirational = new Inspirational();
         }
         public void SyncDivine(bool _proc)
         {

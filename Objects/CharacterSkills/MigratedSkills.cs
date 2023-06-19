@@ -19,6 +19,7 @@ namespace CommunityDLC.Objects.CharacterSkills
             Unload();
             On.CharacterSkills.Justice += JusticeHook;
             On.CharacterSkills.Refocus += RefocusHook;
+            On.CharacterSkills.Inspire += InspireHook;
             /*IL.CharacterSkills.Discipline += DisciplineHook;
             IL.CharacterDummy.RespondToHit += RespondToHitHook;*/
         }
@@ -27,6 +28,7 @@ namespace CommunityDLC.Objects.CharacterSkills
         {
             On.CharacterSkills.Justice -= JusticeHook;
             On.CharacterSkills.Refocus -= RefocusHook;
+            On.CharacterSkills.Inspire -= InspireHook;
             /*IL.CharacterSkills.Discipline -= DisciplineHook;
             IL.CharacterDummy.RespondToHit -= RespondToHitHook;*/
         }
@@ -38,6 +40,89 @@ namespace CommunityDLC.Objects.CharacterSkills
         private bool RefocusHook(On.CharacterSkills.orig_Refocus _orig, CharacterOverworld _player)
         {
             return Refocus(_player);
+        }
+
+        private bool InspireHook(On.CharacterSkills.orig_Inspire _orig, CharacterOverworld _player)
+        {
+            return Inspire(_player);
+        }
+
+        private bool Inspire(CharacterOverworld _player)
+        {
+            if (!_player.m_CharacterStats.m_CharacterSkills.m_Inspire)
+            {
+                return false;
+            }
+            if (_player.IsInAir() || _player.IsInBoat())
+            {
+                return false;
+            }
+            if (!_player.IsInDungeon() && (_player.GetIsInPOI() || GameLogic.Instance.m_WeatherManager.IsItBadWeather()))
+            {
+                return false;
+            }
+            float num = _player.m_CharacterStats.Talent;
+            if (_player.IsInDungeon())
+            {
+                MiniHexDungeon miniHexDungeon = (MiniHexDungeon)_player.GetPOI();
+                num /= (float)miniHexDungeon.GetAlivePlayersInside().Count;
+            }
+            CustomCharacterStatsDLC stats = _player.gameObject.GetComponent<CustomCharacterStatsDLC>();
+            num += stats.InspireChance;
+            Logger.LogWarning($"Inspire Chance {num}");
+            if (UnityEngine.Random.value < num)
+            {
+                InspireKernel(_player);
+                return true;
+            }
+            return false;
+        }
+
+        internal static void InspireKernel(CharacterOverworld _player, bool _force = false)
+        {
+            Logger.LogWarning("Entering inspire kernel");
+            CustomCharacterStatsDLC stats = _player.gameObject.GetComponent<CustomCharacterStatsDLC>();
+            float amount = (1f + stats.InspireXP) * 0.1f;
+            bool flag = false;
+            float secondaryChance = 0.5f;
+            if (_force)
+            {
+                secondaryChance = 1f;
+            }
+            List<CharacterOverworld> linkedPlayers = _player.GetLinkedPlayers();
+            Logger.LogWarning(linkedPlayers.Count);
+            foreach (CharacterOverworld item in linkedPlayers)
+            {
+                if (!(item == _player))
+                {
+                    if (!(UnityEngine.Random.value < secondaryChance + stats.InspireChance))
+                    {
+                        break;
+                    }
+                    if ((bool)item.GetCurrentDummy())
+                    {
+                        item.GetCurrentDummy().PlayCharacterAbilityEvent();
+                    }
+                    else
+                    {
+                        item.PlayCharacterAbilityEvent();
+                    }
+                    item.m_CharacterStats.UpdateXP(GameFlow.Instance.GetXpLevelPercent(amount, _player.m_CharacterStats.m_PlayerLevel), _add: true);
+                    item.PlayCharacterAbilityEvent();
+                    flag = true;
+                }
+            }
+            if (flag)
+            {
+                if ((bool)_player.GetCurrentDummy())
+                {
+                    _player.GetCurrentDummy().PlayCharacterAbilityEvent(FTK_characterSkill.ID.Inspire);
+                }
+                else
+                {
+                    _player.PlayCharacterAbilityEvent(FTK_characterSkill.ID.Inspire);
+                }
+            }
         }
 
         /*private void DisciplineHook(ILContext il)

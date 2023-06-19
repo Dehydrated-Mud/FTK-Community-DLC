@@ -52,6 +52,11 @@ namespace CommunityDLC.Objects.Modifiers
         [CustomModDisplayNameDLC(" Focus Healing", "", ModType.StatMod, CustomModType.None, _percent: true)]
         public float FocusHeal { get; set; } = 0f;
 
+        [CustomModDisplayNameDLC(" Inspire XP", "", ModType.StatMod, CustomModType.None, _percent: true)]
+        public float InspireXP { get; set; } = 0f;
+
+        [CustomModDisplayNameDLC(" Chance to Inspire", "", ModType.StatMod, CustomModType.None, _percent: true)]
+        public float InspireChance { get; set; } = 0f;
         public bool DISelf { get; set; } = false;
 
         [CustomModDisplayNameDLC("Impervious Armor", "", ModType.StatMod, CustomModType.None, _percent: false)]
@@ -59,6 +64,12 @@ namespace CommunityDLC.Objects.Modifiers
 
         [CustomModDisplayNameDLC("Impervious Resistance", "", ModType.StatMod, CustomModType.None, _percent: false)]
         public int ImperviousResist { get; set; } = 0;
+
+        [CustomModDisplayNameDLC(" Chance to Encourage", "", ModType.StatMod, CustomModType.None, _percent: true)]
+        public float EncourageChance { get; set; } = 0f;
+
+        [CustomModDisplayNameDLC(" Chance to Distract", "", ModType.StatMod, CustomModType.None, _percent: true)]
+        public float DistractChance { get; set; } = 0f;
 
         private WeaponMod m_Ice = new WeaponMod();
         private WeaponMod m_Fire = new WeaponMod();

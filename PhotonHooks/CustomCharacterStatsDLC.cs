@@ -36,6 +36,11 @@ namespace CommunityDLC.PhotonHooks
         public int ImperviousResist { get; set; } = 0;
         public float EvasionMod { get; set; } = 0; // I don't think this is necessary as the original characterstats has an evasionmod that we can add to directly.
         public bool DISelf { get; set; } = false;
+        public float EncourageChance { get; set; } = 0;
+        public float DistractChance { get; set; } = 0;
+        public float InspireXP { get; set; } = 0;
+
+        public float InspireChance { get; set; } = 0;
 
         public float DIThreshold { get; set; } = 0.5f;
         public float FocusHeal = 0.08f;
@@ -84,6 +89,10 @@ namespace CommunityDLC.PhotonHooks
             DIThreshold = 0.5f;
             DISelf = false;
             FocusHeal = 0.08f;
+            InspireChance = 0f;
+            InspireXP = 0f;
+            EncourageChance = 0f;
+            DistractChance = 0f;
         }
         public void ClearDefense()
         {
@@ -100,6 +109,8 @@ namespace CommunityDLC.PhotonHooks
                 BattleAPI.Instance.SetAStat(m_CharacterOverworld.GetCurrentDummy(), ImperviousArmor, SetFloats.ImperviousArmor, CombatValueOperators.Add);
                 BattleAPI.Instance.SetAStat(m_CharacterOverworld.GetCurrentDummy(), ImperviousResist, SetFloats.ImperviousResist, CombatValueOperators.Add);
                 BattleAPI.Instance.SetAStat(m_CharacterOverworld.GetCombatDummy(), LifestealFac, SetFloats.LifestealFac, CombatValueOperators.Add);
+                BattleAPI.Instance.SetAStat(m_CharacterOverworld.GetCombatDummy(), EncourageChance, SetFloats.EncourageChance, CombatValueOperators.Add);
+                BattleAPI.Instance.SetAStat(m_CharacterOverworld.GetCombatDummy(), DistractChance, SetFloats.DistractChance, CombatValueOperators.Add);
             }
             else
             {

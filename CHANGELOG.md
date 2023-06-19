@@ -30,3 +30,5 @@ init
 - Added Gladiator skill tree
 ### v 0.2.12
 - Added Paladin skill tree
+### v 0.2.13
+- Added Minstrel skill tree

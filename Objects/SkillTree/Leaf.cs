@@ -164,6 +164,18 @@ namespace CommunityDLC.Objects.SkillTree
             PaladinThreshold,
             PaladinSelf,
             PaladinHeal,
+            MinstrelDistract,
+            MinstrelInspireChance,
+            MinstrelInspireXP,
+            MinstrelEncourage,
+            MinstrelInn,
+            MinstrelInspirational,
+            MinstrelOffA1,
+            MinstrelOffA2,
+            MinstrelOffA3,
+            MinstrelOffB1,
+            MinstrelOffB2,
+            MinstrelOffB3,
             Test,
             Test2
         }
